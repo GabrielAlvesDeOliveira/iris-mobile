@@ -16,13 +16,11 @@ export default function App() {
   return (
     <NavigationContainer>
       <StatusBar hidden />
-      <Stack.Navigator>
-        <Stack.Screen name="Start" component={Start} options={{
-          headerShown: false
-        }}/>
-        <Stack.Screen name="Home" component={Home} options={{
-          headerShown: false
-        }} />
+      <Stack.Navigator screenOptions={{
+        headerShown: false
+      }}>
+        <Stack.Screen name="Start" component={Start} />
+        <Stack.Screen name="Home" component={Home} />
       </Stack.Navigator>
     </NavigationContainer>
 
