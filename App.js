@@ -4,24 +4,24 @@ import React from 'react';
 import { StatusBar } from 'react-native';
 
 import { NavigationContainer } from '@react-navigation/native'
-import { createStackNavigator } from '@react-navigation/stack'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 import Start from './src/screens/Start';
 import Home from './src/screens/Home';
 
 export default function App() {
 
-  const Stack = createStackNavigator();
+  const Stack = createNativeStackNavigator();
 
   return (
     <NavigationContainer>
       <StatusBar hidden />
       <Stack.Navigator>
         <Stack.Screen name="Start" component={Start} options={{
-          headerShown: null
+          headerShown: false
         }}/>
         <Stack.Screen name="Home" component={Home} options={{
-          // header: null
+          headerShown: false
         }} />
       </Stack.Navigator>
     </NavigationContainer>
