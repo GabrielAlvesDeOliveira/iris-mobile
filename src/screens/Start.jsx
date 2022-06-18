@@ -3,9 +3,6 @@ import { Text, StyleSheet, View, TouchableOpacity } from 'react-native'
 import { useRoute } from '@react-navigation/native'
 export default function Start({ navigation }) {
 
-	const route = useRoute()
-	const params = route.params
-
 	return (
 		<View style={styles.container}>
 			<View style={styles.iris}>
