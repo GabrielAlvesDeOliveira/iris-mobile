@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View, StyleSheet, Image } from 'react-native'
+import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native'
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import IconFA from 'react-native-vector-icons/FontAwesome'
@@ -7,33 +7,18 @@ import IconAD from 'react-native-vector-icons/AntDesign'
 
 import FunctionBox from '../components/FunctionBox'
 
-export default function Home() {
+export default function Home({navigation}) {
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
+      <TouchableOpacity style={styles.header} onPress={() => navigation.navigate('Start')}>
         <Icon name='gamepad-circle' size={50} />
-      </View>
+      </TouchableOpacity>
       <View style={styles.functions}>
         <Text style={styles.hello}> Olá, Usuário </Text>
         <View style={styles.functionBoxes}>
-          <View style={styles.functionComponent}>
-            <View style={styles.functionBox}>
-              <IconFA name='bars' size={30} />
-            </View>
-            <Text style={styles.functionText}>Todos</Text>
-          </View>
-          <View style={styles.functionComponent}>
-            <View style={styles.functionBox}>
-              <IconAD name='clockcircleo' size={30} />
-            </View>
-            <Text style={styles.functionText}>Todos</Text>
-          </View>
-          <View style={styles.functionComponent}>
-            <View style={styles.functionBox}>
-              <IconAD name='hearto' size={30} />
-            </View>
-            <Text style={styles.functionText}>Favoritos</Text>
-          </View>
+          <Text style={styles.functionText}>
+            Duis ao dapibus magna. Aliquam tincidunt at metus ut vivera.
+          </Text>
         </View>
       </View>
       <View style={styles.categories}>
@@ -81,11 +66,11 @@ const styles = StyleSheet.create({
   },
   functions: {
     paddingVertical: 20,
-    flex: 6,
+    flex: 3,
     alignItems: 'center',
   },
   categories: {
-    flex: 7,
+    flex: 8,
   },
   hello: {
     fontSize: 30,
@@ -97,34 +82,17 @@ const styles = StyleSheet.create({
   },
   functionText: {
     marginTop: 10,
-    fontSize: 14,
-    fontWeight: 'bold',
-  },
-  functionComponent: {
-    flexDirection: 'column',
-    alignItems: 'center',
-    margin: 10,
-  },
-  functionBox: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: 75,
-    height: 75,
-    backgroundColor: '#eae9f7',
-    borderRadius: 15,
-    shadowColor: '#000',
-    shadowOffset: { width: 4, height: 4 },
-    shadowOpacity: 0.5,
-    shadowRadius: 2,
-    elevation: 1,
+    fontSize: 20,
   },
   categoriesText: {
     fontWeight: 'bold',
     fontSize: 20,
     marginVertical: 20,
+    marginLeft: 20
   },
   categoriesContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
+    justifyContent: 'space-around',
   },
 })
