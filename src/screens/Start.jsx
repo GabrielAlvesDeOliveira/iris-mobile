@@ -1,12 +1,13 @@
 import React from 'react'
-import { Text, StyleSheet, View, TouchableOpacity } from 'react-native'
+import { Text, StyleSheet, View, TouchableOpacity, Image } from 'react-native'
 
 export default function Start({ navigation }) {
 
 	return (
 		<View style={styles.container}>
 				<View style={styles.iris}>
-					<Text>IRIS</Text>
+					<Image source={require('../../assets/images/logo.png')} style={styles.irisImg} />
+					<Text style={styles.irisText}>IRIS</Text>
 				</View>
 				<View style={styles.welcomeArea}>
 					<Text style={styles.welcome}>Bem vindo!</Text>
@@ -35,6 +36,15 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center',
 		justifyContent: 'center',
+	},
+	irisImg: {
+		width: 150,
+		height: 150,
+		resizeMode: 'contain',
+		
+	},
+	irisText: {
+		fontSize: 30,
 	},
 	welcome: {
 		fontSize: 30,
