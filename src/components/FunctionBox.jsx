@@ -1,9 +1,9 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
 
 import IconFE from 'react-native-vector-icons/Feather'
 
-export default function FunctionBox({ image, label, color }) {
+export default function FunctionBox({ image, label, color, setVisible }) {
 
   return (
     <View style={[styles.container, { backgroundColor: color }]}>
@@ -12,7 +12,7 @@ export default function FunctionBox({ image, label, color }) {
         <Text style={styles.label}>
           {label}
         </Text>
-        <TouchableOpacity style={styles.icon} onPress={() => {}}>
+        <TouchableOpacity style={styles.icon} onPress={() => setVisible(true)}>
           <IconFE name="camera" color={'white'} size={15} />
         </TouchableOpacity>
       </View>

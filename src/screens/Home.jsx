@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native'
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
@@ -6,8 +6,12 @@ import IconFA from 'react-native-vector-icons/FontAwesome'
 import IconAD from 'react-native-vector-icons/AntDesign'
 
 import FunctionBox from '../components/FunctionBox'
+import CameraModal from '../components/Camera'
 
 export default function Home({navigation}) {
+
+  const [isVisible, setVisible] = useState(false)
+
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.header} onPress={() => navigation.navigate('Start')}>
@@ -29,28 +33,34 @@ export default function Home({navigation}) {
             color={'#7099CD'}
             image={require('../../assets/images/maça.png')}
             label={'Reconhecer Objetos'}
+            setVisible={setVisible}
           />
 
           <FunctionBox
             color={'#FFD87F'}
             image={require('../../assets/images/livro.png')}
             label={'Detectar texto em imagens'}
+            setVisible={setVisible}
           />
 
           <FunctionBox
             color={'#DA668E'}
             image={require('../../assets/images/fone.png')}
             label={'Reconhecer Famosos'}
+            setVisible={setVisible}
           />
 
           <FunctionBox
             color={'#B9B6E5'}
             image={require('../../assets/images/maos.png')}
             label={'Personalizar Rótulos'}
+            setVisible={setVisible}
           />
 
         </View>
       </View>
+
+      <CameraModal modalVisible={isVisible} setVisible={setVisible}/>
     </View>
   )
 }
