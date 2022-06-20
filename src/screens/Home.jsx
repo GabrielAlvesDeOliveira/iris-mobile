@@ -9,7 +9,6 @@ import FunctionBox from '../components/FunctionBox'
 import CameraModal from '../components/Camera'
 
 export default function Home({navigation}) {
-
   const [isVisible, setVisible] = useState(false)
 
   return (
@@ -28,9 +27,9 @@ export default function Home({navigation}) {
       <View style={styles.categories}>
         <Text style={styles.categoriesText}> Categorias </Text>
         <View style={styles.categoriesContainer}>
-
           <FunctionBox
             color={'#7099CD'}
+            navigation={navigation}
             image={require('../../assets/images/maça.png')}
             label={'Reconhecer Objetos'}
             setVisible={setVisible}
@@ -38,6 +37,7 @@ export default function Home({navigation}) {
 
           <FunctionBox
             color={'#FFD87F'}
+            navigation={navigation}
             image={require('../../assets/images/livro.png')}
             label={'Detectar texto em imagens'}
             setVisible={setVisible}
@@ -45,6 +45,7 @@ export default function Home({navigation}) {
 
           <FunctionBox
             color={'#DA668E'}
+            navigation={navigation}
             image={require('../../assets/images/fone.png')}
             label={'Reconhecer Famosos'}
             setVisible={setVisible}
@@ -52,11 +53,11 @@ export default function Home({navigation}) {
 
           <FunctionBox
             color={'#B9B6E5'}
+            navigation={navigation}
             image={require('../../assets/images/maos.png')}
             label={'Personalizar Rótulos'}
             setVisible={setVisible}
           />
-
         </View>
       </View>
 
