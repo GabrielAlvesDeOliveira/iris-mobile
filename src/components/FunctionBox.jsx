@@ -1,22 +1,28 @@
-import React, {useState} from 'react'
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
+import React from 'react'
+import { View, Text, StyleSheet, Image, TouchableOpacity, TouchableHighlight } from 'react-native'
 
 import IconFE from 'react-native-vector-icons/Feather'
 
-export default function FunctionBox({ image, label, color, setVisible }) {
+export default function FunctionBox({ navigation, image, label, color }) {
 
   return (
-    <View style={[styles.container, { backgroundColor: color }]}>
-      <Image source={image} style={styles.img} />
-      <View style={styles.footer}>
-        <Text style={styles.label}>
-          {label}
-        </Text>
-        <TouchableOpacity style={styles.icon} onPress={() => setVisible(true)}>
-          <IconFE name="camera" color={'white'} size={15} />
-        </TouchableOpacity>
+    <TouchableHighlight
+      onPress={() =>
+        navigation.navigate('Labels', { })
+      }
+    >
+      <View style={[styles.container, { backgroundColor: color }]}>
+        <Image source={image} style={styles.img} />
+        <View style={styles.footer}>
+          <Text style={styles.label}>
+            {label}
+          </Text>
+          <TouchableOpacity style={styles.icon} onPress={() => setVisible(true)}>
+            <IconFE name="camera" color={'white'} size={15} />
+          </TouchableOpacity>
+        </View>
       </View>
-    </View>
+    </TouchableHighlight>
   )
 }
 
