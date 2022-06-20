@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     },
     screenBody: {
         top: 80,
-        paddingVertical: 15,
+        flex: 1,
         paddingHorizontal: 29,
         backgroundColor: 'white'
     },
@@ -53,6 +53,9 @@ const styles = StyleSheet.create({
         fontWeight: '800',
         marginBottom: 18
     },
+    scrollEl: {
+        flex: 1
+    }
 })
 
 export default styles;

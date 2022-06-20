@@ -21,12 +21,28 @@ const labelsList = [
                 percentage: '75%',
             },
         ]
+    }, {
+        title: 'Especifícos',
+        data: [
+            {
+                label: 'Relógio',
+                percentage: '99%',
+            },
+            {
+                label: 'Despertador',
+                percentage: '88%',
+            },
+            {
+                label: 'Alarme',
+                percentage: '75%',
+            },
+        ]
     }
 ]
 
 const LabelsPage = ({ navigation }) => {
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
             <View style={styles.header}>
                 <TouchableHighlight
                     style={styles.button}
@@ -44,22 +60,25 @@ const LabelsPage = ({ navigation }) => {
             </View>
 
             <View style={styles.screenBody}>
-                <Image 
-                    source={{uri: 'https://images.unsplash.com/photo-1531379410502-63bfe8cdaf6f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aGFuZHxlbnwwfHwwfHw%3D&w=1000&q=80'}} 
-                    style={styles.imageLabelled}
-                />
-                <Text style={styles.screenTitle}>
-                    Rótulos
-                </Text>
+                <View>
+                    <Image 
+                        source={{uri: 'https://images.unsplash.com/photo-1531379410502-63bfe8cdaf6f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aGFuZHxlbnwwfHwwfHw%3D&w=1000&q=80'}} 
+                        style={styles.imageLabelled}
+                    />
+                    <Text style={styles.screenTitle}>
+                        Rótulos
+                    </Text>
 
-                <SectionList
-                    sections={labelsList}
-                    renderItem={({ item }) => <LabelItem label={item.label} percentage={item.percentage}/>}
-                    renderSectionHeader={({section}) => <Text style={styles.sectionHeader}>{section.title}</Text>}
-                    keyExtractor={(item, index) => index}
-                />
+                    <SectionList
+                        sections={labelsList}
+                        stickySectionHeadersEnabled={false}
+                        renderItem={({ item }) => <LabelItem label={item.label} percentage={item.percentage}/>}
+                        renderSectionHeader={({section}) => <Text style={styles.sectionHeader}>{section.title}</Text>}
+                        keyExtractor={(item, index) => index}
+                    />
+                </View>
             </View>
-        </View>
+        </SafeAreaView>
     );
 }
 
