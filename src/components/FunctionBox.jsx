@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Image, TouchableOpacity, TouchableHighlight } f
 
 import IconFE from 'react-native-vector-icons/Feather'
 
-export default function FunctionBox({ navigation, image, label, color }) {
+export default function FunctionBox({ navigation, image, label, color, setVisible }) {
 
   return (
     <TouchableHighlight
