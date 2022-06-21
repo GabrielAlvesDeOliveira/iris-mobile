@@ -6,23 +6,17 @@ import IconFE from 'react-native-vector-icons/Feather'
 export default function FunctionBox({ navigation, image, label, color, setVisible }) {
 
   return (
-    <TouchableHighlight
-      onPress={() =>
-        navigation.navigate('Labels', { })
-      }
-    >
-      <View style={[styles.container, { backgroundColor: color }]}>
-        <Image source={image} style={styles.img} />
-        <View style={styles.footer}>
-          <Text style={styles.label}>
-            {label}
-          </Text>
-          <TouchableOpacity style={styles.icon} onPress={() => setVisible(true)}>
-            <IconFE name="camera" color={'white'} size={15} />
-          </TouchableOpacity>
-        </View>
+    <View style={[styles.container, { backgroundColor: color }]}>
+      <Image source={image} style={styles.img} />
+      <View style={styles.footer}>
+        <Text style={styles.label}>
+          {label}
+        </Text>
+        <TouchableOpacity style={styles.icon} onPress={() => setVisible(true)}>
+          <IconFE name="camera" color={'white'} size={15} />
+        </TouchableOpacity>
       </View>
-    </TouchableHighlight>
+    </View>
   )
 }
 
@@ -58,6 +52,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: 5,
-    
+
   }
 })

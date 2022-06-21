@@ -61,7 +61,7 @@ export default function Home({navigation}) {
         </View>
       </View>
 
-      <CameraModal modalVisible={isVisible} setVisible={setVisible}/>
+      <CameraModal modalVisible={isVisible} setVisible={setVisible} navigation={navigation}/>
     </View>
   )
 }
