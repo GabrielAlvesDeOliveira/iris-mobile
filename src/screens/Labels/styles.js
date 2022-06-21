@@ -5,36 +5,10 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingTop: StatusBar.height
     },
-    header: {
-        top: 0,
-        flex: 1,
-        height: 80,
-        width: '100%',
-        position: 'absolute',
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingHorizontal: 29,
-        backgroundColor: 'white'
-    },
-    headerText: {
-        fontSize: 18,
-        marginLeft: 12
-    },
-    button: {
-        flex: 1,
-        flexDirection: 'row',
-        alignItems: 'center',
-        backgroundColor: 'white',
-    },
-    buttonContent: {
-        flex: 1,
-        flexDirection: 'row',
-        alignItems: 'center',
-        backgroundColor: 'white',
-    },
     screenBody: {
         top: 80,
         flex: 1,
+        paddingBottom: 28,
         paddingHorizontal: 29,
         backgroundColor: 'white'
     },
@@ -47,15 +21,15 @@ const styles = StyleSheet.create({
     screenTitle: {
         fontSize: 24,
         fontWeight: '700',
-        marginBottom: 18
     },
     sectionHeader: {
         fontSize: 18,
         fontWeight: '800',
-        marginBottom: 18
+        marginBottom: 18,
+        marginTop: 18
     },
     scrollEl: {
-        flex: 1
+        flex: 1,
     }
 })
 
