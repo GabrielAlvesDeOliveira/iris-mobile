@@ -44,18 +44,18 @@ const light = {
         },
     },
     text: {
-        h1: 48,
-        h2: 36,
-        h3: 32,
-        h4: 28,
-        h5: 20,
-        h6: 16
+        h1: '48px',
+        h2: '36px',
+        h3: '32px',
+        h4: '28px',
+        h5: '20px',
+        h6: '16px'
     },
-    fontWeight: {
-        semibold: 600,
-        regular: 400,
-        bold: 700
-    },
+    font: {
+        semibold: 'Sora_400Regular',
+        regular: 'Sora_600SemiBold',
+        bold: 'Sora_700Bold'
+    }
 }
 
 export default light;

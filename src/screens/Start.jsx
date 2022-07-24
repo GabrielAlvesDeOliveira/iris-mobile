@@ -45,11 +45,12 @@ const styles = StyleSheet.create({
 	},
 	irisText: {
 		fontSize: 30,
+		fontFamily: 'Sora_600SemiBold'
 	},
 	welcome: {
 		fontSize: 30,
 		margin: 10,
-		fontWeight: 'bold',
+		fontFamily: 'Sora_600SemiBold',
 		color: '#000',
 	},
 	welcomeArea: {
@@ -58,7 +59,7 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 	},
 	welcomeSubtitle: {
-
+		fontFamily: 'Sora_400Regular',
 	},
 	startArea: {
 		flex: 1,
@@ -79,5 +80,6 @@ const styles = StyleSheet.create({
 	},
 	startText: {
 		color: '#fff',
+		fontFamily: 'Sora_600SemiBold'
 	}
 });
