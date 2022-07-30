@@ -9,7 +9,7 @@ const Header = ({ path, navigation }) => {
             <TouchableHighlight
                 style={styles.button}
                 onPress={() =>
-                    navigation.navigate(path, { })
+                    navigation.navigate(path, {})
                 }
             >
                 <View style={styles.buttonContent}>
