@@ -13,51 +13,49 @@ export default function Home({navigation}) {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.header} onPress={() => navigation.navigate('Start')}>
+      <TouchableOpacity style={styles.header} onPress={() => navigation.navigate('Home')}>
         <Icon name='gamepad-circle' size={50} />
       </TouchableOpacity>
       <View style={styles.functions}>
-        <Text style={styles.hello}> Olá, Usuário </Text>
+        <Text style={styles.hello}> Bem-vindo a Iris! </Text>
         <View style={styles.functionBoxes}>
           <Text style={styles.functionText}>
-            Duis ao dapibus magna. Aliquam tincidunt at metus ut vivera.
+            O seu app de reconhecimento de imagens já está ativo. O que deseja fazer hoje?
           </Text>
         </View>
       </View>
       <View style={styles.categories}>
-        <Text style={styles.categoriesText}> Categorias </Text>
+        <Text style={styles.categoriesText}> Recursos </Text>
         <View style={styles.categoriesContainer}>
           <FunctionBox
-            color={'#7099CD'}
+            color={'#F806CC'}
             navigation={navigation}
-            image={require('../../assets/images/maça.png')}
-            label={'Reconhecer Objetos'}
+            image={require('../../assets/images/ObjectRecognition.png')}
+            label='Reconhecimento de objetos'
+            setVisible={setVisible}
+          />
+          <FunctionBox
+            color={'#3B50FF'}
+            navigation={navigation}
+            image={require('../../assets/images/TextDetection.png')}
+            label='Detecção de texto'
+            setVisible={setVisible}
+          />
+          <FunctionBox
+            color={'#1DB518'}
+            navigation={navigation}
+            image={require('../../assets/images/FaceDetection.png')}
+            label='Detecção de análise de rosto'
+            setVisible={setVisible}
+          />
+          <FunctionBox
+            color={'#6D25CC'}
+            navigation={navigation}
+            image={require('../../assets/images/CelebrityDetection.png')}
+            label='Reconhecimento de celebridades'
             setVisible={setVisible}
           />
 
-          <FunctionBox
-            color={'#FFD87F'}
-            navigation={navigation}
-            image={require('../../assets/images/livro.png')}
-            label={'Detectar texto em imagens'}
-            setVisible={setVisible}
-          />
-
-          <FunctionBox
-            color={'#DA668E'}
-            navigation={navigation}
-            image={require('../../assets/images/fone.png')}
-            label={'Reconhecer Famosos'}
-            setVisible={setVisible}
-          />
-
-          <FunctionBox
-            color={'#B9B6E5'}
-            navigation={navigation}
-            image={require('../../assets/images/maos.png')}
-            label={'Personalizar Rótulos'}
-            setVisible={setVisible}
-          />
         </View>
       </View>
 
@@ -78,13 +76,13 @@ const styles = StyleSheet.create({
   functions: {
     paddingVertical: 20,
     flex: 3,
-    alignItems: 'center',
   },
   categories: {
     flex: 8,
   },
   hello: {
     fontSize: 30,
+    paddingHorizontal: 20,
     fontWeight: 'bold'
   },
   functionBoxes: {
@@ -93,11 +91,12 @@ const styles = StyleSheet.create({
   },
   functionText: {
     marginTop: 10,
-    fontSize: 20,
+    color: '#786980',
+    fontSize: 18,
   },
   categoriesText: {
     fontWeight: 'bold',
-    fontSize: 20,
+    fontSize: 25,
     marginVertical: 20,
     marginLeft: 20
   },
