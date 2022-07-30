@@ -103,7 +103,7 @@ export default function CameraModal({ navigation, modalVisible, setVisible }) {
       </SafeAreaView>
     </Modal>
 
-  )
+  )}
 
 
 const styles = StyleSheet.create({
@@ -136,6 +136,5 @@ const styles = StyleSheet.create({
     alignItems: 'center'
 
   }
-
 
 })
