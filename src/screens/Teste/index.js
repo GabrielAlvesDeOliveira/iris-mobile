@@ -6,9 +6,9 @@ const Teste = ({ navigation }) => {
     return (
         <Container>
             <Header
+                isHome={true}
                 navigation={navigation}
             />
-            <Title>Teste</Title>
             <RouterBottom />
         </Container>
     );

@@ -8,7 +8,8 @@ import { StatusBar, useColorScheme, View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useFonts, Sora_400Regular, Sora_600SemiBold, Sora_700Bold } from '@expo-google-fonts/sora';
-import Teste from './src/RouterBottom';
+// import Teste from './src/RouterBottom';
+import Teste from './src/screens/Teste';
 
 export default function App() {
   const Stack = createNativeStackNavigator();
