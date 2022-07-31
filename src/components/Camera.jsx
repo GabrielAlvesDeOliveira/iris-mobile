@@ -4,7 +4,6 @@ import { Modal, Text, View, StyleSheet, SafeAreaView, TouchableOpacity, Dimensio
 import { Camera, CameraType } from "expo-camera";
 import * as MediaLibrary from "expo-media-library";
 import * as ImagePicker from "expo-image-picker";
-import * as FileSystem from "expo-file-system";
 
 import * as IconPhosphor from "phosphor-react-native";
 
@@ -129,7 +128,7 @@ export default function CameraModal({ navigation, modalVisible, setVisible }) {
               <IconPhosphor.X size={60} color="#fff" />
             </TouchableOpacity>
               <TouchableOpacity onPress={switchCameraType}>
-                <IconPhosphor.ArrowsClockwise size={60} color="#fff" />
+                {camType === 'front' ? ( <IconPhosphor.ArrowsClockwise size={60} color="#fff" /> ) : ( <IconPhosphor.ArrowsCounterClockwise size={60} color={"#fff"} /> )}
               </TouchableOpacity>
           </View>
           <View style={styles.buttonView}>
