@@ -8,14 +8,11 @@ import IconAD from 'react-native-vector-icons/AntDesign'
 import FunctionBox from '../components/FunctionBox'
 import CameraModal from '../components/Camera'
 
-export default function Home({navigation}) {
+export default function Home({ navigation }) {
   const [isVisible, setVisible] = useState(false)
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.header} onPress={() => navigation.navigate('Home')}>
-        <Icon name='gamepad-circle' size={50} />
-      </TouchableOpacity>
       <View style={styles.functions}>
         <Text style={styles.hello}> Bem-vindo a Iris! </Text>
         <View style={styles.functionBoxes}>
@@ -59,7 +56,7 @@ export default function Home({navigation}) {
         </View>
       </View>
 
-      <CameraModal modalVisible={isVisible} setVisible={setVisible} navigation={navigation}/>
+      <CameraModal modalVisible={isVisible} setVisible={setVisible} navigation={navigation} />
     </View>
   )
 }

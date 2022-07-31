@@ -1,17 +1,15 @@
 import React from 'react';
 import theme from './src/theme';
 import 'react-native-gesture-handler';
-import Home from './src/screens/Home';
 import { Provider } from 'react-redux';
-import Start from './src/screens/Start';
 import store from './src/store/reducers';
-import LabelsPage from './src/screens/Labels';
 import { ThemeProvider } from 'styled-components';
 import { StatusBar, useColorScheme, View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useFonts, Sora_400Regular, Sora_600SemiBold, Sora_700Bold } from '@expo-google-fonts/sora';
-import Teste from './src/RouterBottom';
+// import Teste from './src/RouterBottom';
+import Teste from './src/screens/Teste';
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -24,7 +22,7 @@ export default function App() {
     Sora_700Bold
   })
 
-  if(!fontsLoaded) {
+  if (!fontsLoaded) {
     return <View>
       <Text>Não funcionou</Text>
     </View>

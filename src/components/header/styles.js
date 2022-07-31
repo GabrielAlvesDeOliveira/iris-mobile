@@ -1,34 +1,17 @@
-import { StyleSheet } from "react-native";
+import styled from 'styled-components/native';
 
-const styles = StyleSheet.create({
-    header: {
-        top: 0,
-        flex: 1,
-        height: 80,
-        zIndex: 100,
-        width: '100%',
-        position: 'absolute',
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingHorizontal: 29,
-        backgroundColor: 'white',
-    },
-    headerText: {
-        fontSize: 18,
-        marginLeft: 12
-    },
-    button: {
-        flex: 1,
-        flexDirection: 'row',
-        alignItems: 'center',
-        backgroundColor: 'white',
-    },
-    buttonContent: {
-        flex: 1,
-        flexDirection: 'row',
-        alignItems: 'center',
-        backgroundColor: 'white',
-    },
-});
+export const HeaderWrapper = styled.View`
+    width: 100%;
+    height: 70px;
+    display: flex;
+    padding: 0 24px;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: ${({ theme }) => theme.colors.background.main};
+`;
 
-export default styles;
+export const HeaderButton = styled.Pressable`
+    padding: 12px;
+    background-color: ${({ theme }) => theme.colors.background.main};
+`;

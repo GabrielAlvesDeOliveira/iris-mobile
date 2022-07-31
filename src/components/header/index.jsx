@@ -1,25 +1,45 @@
-import { Text, TouchableHighlight, View } from "react-native";
-import Icon from 'react-native-vector-icons/AntDesign'
+import Logo from "../Logo";
+import { List } from "phosphor-react-native";
+import { ArrowLeft } from 'phosphor-react-native';
+import { HeaderWrapper, HeaderButton } from "./styles";
 
-import styles from "./styles";
-
-const Header = ({ path, navigation }) => {
+const Header = ({
+    isHome = false,
+    previousScreen = 'Home',
+    navigation
+}) => {
     return (
-        <View style={styles.header}>
-            <TouchableHighlight
-                style={styles.button}
-                onPress={() =>
-                    navigation.navigate(path, { })
-                }
+        <HeaderWrapper>
+            {
+                isHome ? (
+                    <Logo />
+                ) : (
+                    <HeaderButton
+                        onPress={() => {
+                            navigation.navigate(previousScreen)
+                        }}
+                    >
+                        <ArrowLeft
+                            size={32}
+                            weight={'regular'}
+                            color={'#000000'}
+                        />
+                    </HeaderButton>
+                )
+            }
+
+            <HeaderButton
+                onPress={() => {
+                    console.log('sim')
+                }}
             >
-                <View style={styles.buttonContent}>
-                    <Icon name='arrowleft' color={'black'} size={30} />
-                    <Text style={styles.headerText}>
-                        Voltar
-                    </Text>
-                </View>
-            </TouchableHighlight>
-        </View>
+                <List
+                    size={36}
+                    weight="fill"
+                    color="#000000"
+                />
+            </HeaderButton>
+        </HeaderWrapper>
     );
 }
 
