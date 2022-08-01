@@ -9,7 +9,8 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useFonts, Sora_400Regular, Sora_600SemiBold, Sora_700Bold } from '@expo-google-fonts/sora';
 // import Teste from './src/RouterBottom';
-import Teste from './src/screens/Teste';
+//import Teste from './src/screens/Teste';
+import CameraModal from './src/components/Camera';
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -36,7 +37,7 @@ export default function App() {
           <Stack.Navigator screenOptions={{
             headerShown: false
           }}>
-            <Stack.Screen name='Teste' component={Teste} />
+            <Stack.Screen name='Teste' component={CameraModal} />
             {/* <Stack.Screen name="Home" component={Home} />
               <Stack.Screen name="Start" component={Start} />
               <Stack.Screen name="Labels" component={LabelsPage} /> */}
