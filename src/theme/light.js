@@ -52,8 +52,8 @@ const light = {
         h6: '16px'
     },
     font: {
-        semibold: 'Sora_400Regular',
-        regular: 'Sora_600SemiBold',
+        regular: 'Sora_400Regular',
+        semibold: 'Sora_600SemiBold',
         bold: 'Sora_700Bold'
     }
 }

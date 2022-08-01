@@ -1,6 +1,6 @@
-import Header from '../../components/Header'
-import RouterBottom from '../../RouterBottom';
-import { Container, Title } from "./styles";
+import { Container } from "./styles";
+import Header from '../../components/Header';
+import NavBar from '../../components/NavBar';
 
 const Teste = ({ navigation }) => {
     return (
@@ -9,7 +9,7 @@ const Teste = ({ navigation }) => {
                 isHome={true}
                 navigation={navigation}
             />
-            <RouterBottom />
+            <NavBar />
         </Container>
     );
 }
