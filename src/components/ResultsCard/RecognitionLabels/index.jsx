@@ -9,12 +9,21 @@ import {
 const RecognitionLabelsCard = ({
     image,
     label,
-    percentage
+    percentage, 
+    isHorizontal = false
 }) => {
+    const size = !isHorizontal ? '120px' : '80px';
+    const corner = !isHorizontal ? 'bottom' : 'right';
+    const direction = !isHorizontal ? 'column' : 'row';
+
     return (
-        <CardWrapper>
+        <CardWrapper
+            direction={direction}
+        >
             <ObjectFocus
+                size={size}
                 source={image}
+                corner={corner}
             />
 
             <TextGroup>

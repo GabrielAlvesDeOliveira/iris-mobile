@@ -4,9 +4,10 @@ import { ArrowLeft } from 'phosphor-react-native';
 import { HeaderWrapper, HeaderButton } from "./styles";
 
 const Header = ({
+    navigation,
     isHome = false,
+    isTransparent = false,
     previousScreen = 'Home',
-    navigation
 }) => {
     return (
         <HeaderWrapper>

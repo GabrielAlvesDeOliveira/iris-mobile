@@ -10,12 +10,6 @@ import { StatusBar, useColorScheme, View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useFonts, Sora_400Regular, Sora_600SemiBold, Sora_700Bold } from '@expo-google-fonts/sora';
-<<<<<<< HEAD
-// import Teste from './src/RouterBottom';
-//import Teste from './src/screens/Teste';
-import CameraModal from './src/components/Camera';
-=======
->>>>>>> b1221ae6d69cdce3fb923c1a9823c4b614981e6a
 
 export default function App() {
   const deviceTheme = useColorScheme();
