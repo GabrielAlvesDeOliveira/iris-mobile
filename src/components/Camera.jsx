@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Modal, Text, View, StyleSheet, SafeAreaView, TouchableOpacity, Dimensions, Image, Button } from "react-native";
+import { Modal, Text, View, StyleSheet, SafeAreaView, TouchableOpacity, Dimensions, Image, Button, Animated } from "react-native";
 
 import { Camera, CameraType } from "expo-camera";
 import * as MediaLibrary from "expo-media-library";
 import * as ImagePicker from "expo-image-picker";
 
 import * as IconPhosphor from "phosphor-react-native";
+import { PinchGestureHandler } from "react-native-gesture-handler";
 
 export default function CameraModal({ navigation, modalVisible, setVisible }) {
   let camRef = useRef();
@@ -13,10 +14,12 @@ export default function CameraModal({ navigation, modalVisible, setVisible }) {
   const [hasCameraPermission, setHasCameraPermission] = useState();
   const [hasMediaLibraryPermission, setHasMediaLibraryPermission] = useState();
   const [photo, setPhoto] = useState();
+  
 
   const [selectedImage, setSelectedImage] = useState(null);
   const [camType, setCamType] = useState(CameraType.back);
   const [flash, setFlash] = useState(Camera.Constants.FlashMode.off);
+  const [zoomScale, setZoomScale] = useState(0)
 
   useEffect(() => {
 
@@ -119,32 +122,35 @@ export default function CameraModal({ navigation, modalVisible, setVisible }) {
   }
 
   return (
-
+    
     <Modal animationType="slide" visible={modalVisible} onRequestClose={() => setVisible(false)}>
-      <SafeAreaView style={styles.container}>
-        <Camera style={styles.camera} type={camType} flashMode={flash} ref={camRef}>
-          <View style={styles.headerCam}>
-            <TouchableOpacity onPress={() => { navigation.navigate("Home"); }}>
-              <IconPhosphor.X size={60} color="#fff" />
-            </TouchableOpacity>
-              <TouchableOpacity onPress={switchCameraType}>
-                {camType === 'front' ? ( <IconPhosphor.ArrowsClockwise size={60} color="#fff" /> ) : ( <IconPhosphor.ArrowsCounterClockwise size={60} color={"#fff"} /> )}
-              </TouchableOpacity>
-          </View>
-          <View style={styles.buttonView}>
-            <TouchableOpacity onPress={selectImage}>
-              <IconPhosphor.Image size={60} color="#fff" />
-            </TouchableOpacity>
-            <TouchableOpacity onPress={takePic}>
-              <IconPhosphor.Camera size={60} color="#fff" />
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => toggleFlash()}>
-              {flash === Camera.Constants.FlashMode.on ? ( <IconPhosphor.Lightning size={60} color={"#fff"} /> ) : ( <IconPhosphor.LightningSlash size={60} color={"#fff"} /> )}
-            </TouchableOpacity>
-          </View>
-        </Camera>
-      </SafeAreaView>
+      <View style={styles.container}>
+        <PinchGestureHandler>
+          <Camera style={styles.camera} type={camType} flashMode={flash} ref={camRef} zoom={zoomScale}>
+              <View style={styles.headerCam}>
+                <TouchableOpacity onPress={() => { navigation.navigate("Home"); }}>
+                  <IconPhosphor.X size={60} color="#fff" />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={switchCameraType}>
+                  {camType === 'front' ? ( <IconPhosphor.ArrowsClockwise size={60} color="#fff" /> ) : ( <IconPhosphor.ArrowsCounterClockwise size={60} color={"#fff"} /> )}
+                </TouchableOpacity>
+              </View>
+              <View style={styles.buttonView}>
+                <TouchableOpacity onPress={selectImage}>
+                  <IconPhosphor.Image size={60} color="#fff" />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={takePic}>
+                    <IconPhosphor.Camera size={60} color="#fff" style={{display: 'inline-block', borderRadius: '60px', boxShadow: '0 0 2px #888', padding: '1em 1em'}} />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => toggleFlash()}>
+                  {flash === Camera.Constants.FlashMode.on ? ( <IconPhosphor.Lightning size={60} color={"#fff"} /> ) : ( <IconPhosphor.LightningSlash size={60} color={"#fff"} /> )}
+                </TouchableOpacity>
+              </View>
+            </Camera>
+          </PinchGestureHandler>
+      </View>
     </Modal>
+    
   );
 }
 
