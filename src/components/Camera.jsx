@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Modal, Text, View, StyleSheet, SafeAreaView, TouchableOpacity, Dimensions, Image, Button, Animated, Platform } from "react-native";
+import { Modal, Text, View, StyleSheet, SafeAreaView, TouchableOpacity, Dimensions, Image, Button, Platform } from "react-native";
 
 import { Camera, CameraType } from "expo-camera";
 import * as MediaLibrary from "expo-media-library";
@@ -8,6 +8,7 @@ import * as ImagePicker from "expo-image-picker";
 import * as IconPhosphor from "phosphor-react-native";
 
 export default function CameraModal({ navigation, modalVisible, setVisible }) {
+  
   let camRef = useRef();
 
   const [hasCameraPermission, setHasCameraPermission] = useState();
@@ -23,6 +24,7 @@ export default function CameraModal({ navigation, modalVisible, setVisible }) {
   useEffect(() => {
 
     (async () => {
+      
       const camPermission = await Camera.requestCameraPermissionsAsync();
       const mediaLibPermission = await MediaLibrary.requestPermissionsAsync();
 
@@ -30,19 +32,25 @@ export default function CameraModal({ navigation, modalVisible, setVisible }) {
       setHasMediaLibraryPermission(mediaLibPermission.status === "granted");
 
     })();
+ 
   }, []);
 
   if (hasCameraPermission === null) {
+    
     return <View />;
+    
   }
 
   if (hasCameraPermission === false) {
+    
     return <Text>Sem permissão para usar a câmera</Text>;
+    
   }
 
   const toggleFlash = () => {
 
     setFlash(
+      
       flash === Camera.Constants.FlashMode.off ? Camera.Constants.FlashMode.on : Camera.Constants.FlashMode.off
 
     );
@@ -177,12 +185,11 @@ export default function CameraModal({ navigation, modalVisible, setVisible }) {
 
   }
 
-
   function CamBody(){
 
     return(
 
-      <Camera style={styles.camera} type={camType} flashMode={flash} ref={camRef} zoom={zoomScale}>
+      <Camera style={styles.camera} type={camType} flashMode={flash} ref={camRef} zoom={zoomScale} autoFocus={Camera.Constants.AutoFocus.auto}>
         <View style={styles.headerCam}>
           <TouchableOpacity onPress={() => { navigation.navigate("Home"); }}>
             <IconPhosphor.X size={60} color="#fff" />
