@@ -1,8 +1,8 @@
-**Descreva suas mudanças:
+**Descreva suas mudanças:**
 
-**Quais bibliotecas foram utilizadas? (Caso nenhuma, deixe em branco)
+**Quais bibliotecas foram utilizadas? (Caso nenhuma, deixe em branco)**
 
-**Checklist antes de pedir uma revisão:
+**Checklist antes de pedir uma revisão:**
 
 - [ ] | Fiz a revisão do meu código?
 
