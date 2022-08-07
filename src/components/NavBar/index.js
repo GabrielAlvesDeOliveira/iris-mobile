@@ -1,6 +1,6 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-import Home from "./screens/Home";
+import Home from "../../screens/Home";
 
 import Entypo from "react-native-vector-icons/Entypo";
 import Fontisto from "react-native-vector-icons/Fontisto";
@@ -8,7 +8,7 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 
 const Tab = createBottomTabNavigator();
 
-export default function RouterBottom() {
+export default function NavBar() {
   return (
     <Tab.Navigator screenOptions={({ route }) => ({
       tabBarIcon: ({ color, size }) => {
@@ -25,7 +25,7 @@ export default function RouterBottom() {
       },
       tabBarActiveTintColor: '#764AF1',
       tabBarInactiveTintColor: '#A17EFF',
-      headerShown: false
+      headerShown: false,
     })}>
       <Tab.Screen name="Home" component={Home} />
       <Tab.Screen name="Favoritos" component={Home} />
