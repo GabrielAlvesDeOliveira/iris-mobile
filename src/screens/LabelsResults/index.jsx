@@ -1,5 +1,5 @@
 import Header from '../../components/Header';
-import CameraImage from '../../../assets/images/Camera.png';
+import CameraImage from '../../../assets/images/CameraPreview.png';
 import { View, Dimensions, FlatList } from "react-native";
 import { Screen, ImageBackground, LabelsWrapper, GeneralLabelsWrapper, SectionTitle, BackgroundRounded } from "./styled";
 import RecognitionLabelsCard from '../../components/ResultsCard/RecognitionLabels';

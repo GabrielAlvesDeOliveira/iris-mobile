@@ -8,14 +8,14 @@ export const CardWrapper = styled.View`
 	align-items: center;
 	border: 1px solid rgba(8, 2, 24, 0.2);
 	box-shadow: 0px 4px 10px rgba(8, 2, 24, 0.2);
-	flex-direction: ${({ direction }) => ( direction )};
+	flex-direction: ${({ direction }) => (direction)};
 	background-color: ${({ theme }) => theme.colors.background.main};
 `;
 
 export const ObjectFocus = styled.Image`
-	width: ${({ size }) => size };
-	height: ${({ size }) => size };
-	margin-${({ corner }) => corner }: 14px;
+	width: ${({ size }) => size};
+	height: ${({ size }) => size};
+	margin-${({ corner }) => corner}: 14px;
 	border-radius: 24px;
 `;
 
