@@ -10,8 +10,8 @@ export const Screen = styled.View`
 export const ImageBackground = styled.Image`
     top: 0;
     position: absolute; 
+    width: ${({ size }) => size}px;
     height: ${({ size }) => size}px;
-    window: ${({ size }) => size}px;
 `;
 
 export const LabelsWrapper = styled.View`
@@ -27,8 +27,8 @@ export const SectionTitle = styled.Text`
     margin-left: 24px;
     margin-bottom: 24px;
     font-size: ${({ theme }) => theme.text.h3};
-    font-family: ${({ theme }) => theme.font.bold };
-    color: ${({ theme }) => theme.colors.typography.main };
+    font-family: ${({ theme }) => theme.font.bold};
+    color: ${({ theme }) => theme.colors.typography.main};
 `;
 
 export const BackgroundRounded = styled.View`

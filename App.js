@@ -36,8 +36,8 @@ export default function App() {
           <Stack.Navigator screenOptions={{
             headerShown: false
           }}>
-            <Stack.Screen name='LabelsResults' component={LabelsResults} />
             <Stack.Screen name='Teste' component={Teste} />
+            <Stack.Screen name='LabelsResults' component={LabelsResults} />
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>

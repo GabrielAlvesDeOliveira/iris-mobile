@@ -1,6 +1,6 @@
-import Header from '../../components/header';
+import Header from '../../components/Header';
 import CameraImage from '../../../assets/images/Camera.png';
-import { Text, View, Dimensions, FlatList } from "react-native";
+import { View, Dimensions, FlatList } from "react-native";
 import { Screen, ImageBackground, LabelsWrapper, GeneralLabelsWrapper, SectionTitle, BackgroundRounded } from "./styled";
 import RecognitionLabelsCard from '../../components/ResultsCard/RecognitionLabels';
 
@@ -30,16 +30,16 @@ const LabelsResults = ({ navigation }) => {
                 size={windowWidth}
                 source={CameraImage}
             />
-            
+
             <LabelsWrapper
                 topMargin={topMargin}
             >
                 <View>
-                    <FlatList 
+                    <FlatList
                         data={data}
                         horizontal={true}
                         contentContainerStyle={{ paddingHorizontal: 24 }}
-                        ItemSeparatorComponent={() => (<View style={{width: 18}}></View>)}
+                        ItemSeparatorComponent={() => (<View style={{ width: 18 }}></View>)}
                         renderItem={({ item, index, separators }) => (
                             <RecognitionLabelsCard
                                 key={index}
@@ -55,8 +55,9 @@ const LabelsResults = ({ navigation }) => {
                     <SectionTitle>Rótulos</SectionTitle>
                     <FlatList
                         data={data}
+                        horizontal={false}
                         contentContainerStyle={{ paddingHorizontal: 24, paddingBottom: 24 }}
-                        ItemSeparatorComponent={() => (<View style={{height: 16}}></View>)}
+                        ItemSeparatorComponent={() => (<View style={{ height: 16 }}></View>)}
                         renderItem={({ item, index, separators }) => (
                             <RecognitionLabelsCard
                                 key={index}
