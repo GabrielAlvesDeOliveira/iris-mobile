@@ -1,14 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, Image, View, TouchableOpacity } from 'react-native';
+import bigLogo from '../../assets/images/biglogo.png'
 
-export default function App() {
+export default function App({ navigation }) {
     return (
       <View style={styles.container}>
-        <Image source={
-            require('./assets/images/biglogo.png')
-        }
-
-        style={styles.logo} />
+        <Image source={bigLogo} style={styles.logo} />
         <Text style={styles.text}> Vamos {"\n"} começar </Text>
         <Text style={styles.text2}>Reconhecimento dentro de um olhar. </Text>
   
@@ -21,8 +18,7 @@ export default function App() {
           justifyContent: 'center',
           alignItems: 'center',
           color: "#FFF"
-  
-          }}>
+          }} onPress={() => navigation.navigate('Options')}>
           <Text style={styles.buttonText}> Iniciar </Text>
         </TouchableOpacity>
   

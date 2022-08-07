@@ -1,174 +1,132 @@
-//import Header from '../tcc/src/components/header';
-//import { StatusBar } from 'expo-status-bar';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, Image, Platform, TouchableOpacity } from 'react-native';
-import React, {useState, useEffect} from 'react';
 import * as ImagePicker from 'expo-image-picker';
+import * as IconPhosphor from "phosphor-react-native";
 
-export default function App() {
+import Header from '../components/header';
+
+import Icon from '../../assets/images/Icon.png';
+import Galeria from '../../assets/images/galeria.png';
+
+export default function App({ navigation }) {
   const [image, setImage] = useState(null);
-
-  useEffect( async () =>  {
-    if(Platform.OS !== 'web') {
-      const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
-      if(status !== 'granted'){
-        alert('Permisson denied!')
-      }
-    }
-
-  }, []) 
 
   const PickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing:true,
-      aspect: [4,3],
+      allowsEditing: true,
+      aspect: [4, 3],
       quality: 1
     })
     console.log(result)
-    if(!result.cancelled){
+    if (!result.cancelled) {
       setImage(result.uri)
     }
   }
 
   return (
     <View style={styles.container}>
-      {/*<StatusBar backgroundColor='#FFF' translucent={false} />*/}
-    
-    <Image source={require("../../assets/images/navegacao.png")} style={styles.navigation}/>
+      <Header navigation={navigation} isHome={false} />
+      <View style={{ alignItems: 'center', justifyContent: 'flex-end' }}>
+        <Image source={Icon} style={styles.logo} />
+      </View>
 
-    <Image source={require("../../assets/images/Icon.png")}
-      style={styles.logo} />
-      <Text style={styles.titulo}>Reconhecimento de Objetos e Ações</Text>
-      <Text style={styles.textocorpo}>Identifique objetos com a nossa tecnologia de reconhecimento de objetos e ações. Selecione uma imagem ou tire uma foto, e retornaremos rótulos relacionados a sua imagem. </Text>
+      <View style={{ flex: 1, justifyContent: 'flex-end' }}>
+        <Text style={styles.titulo}>Reconhecimento de Objetos e Ações</Text>
+        <Text style={styles.textoCorpo}>Identifique objetos com a nossa tecnologia de reconhecimento de objetos e ações. Selecione uma imagem ou tire uma foto, e retornaremos rótulos relacionados a sua imagem. </Text>
+      </View>
 
-      <TouchableOpacity onPress={PickImage} style={styles.galeriabutton} >
-          <Image source={require("../../assets/images/galeria.png")} style={styles.imagemgaleria}/>  
-          {image  && <Image source={{uri:image}} style={{
-              width: 200,
-              height: 200
-          }} />} 
-      </TouchableOpacity>
+      <View style={{ flexDirection: 'row', justifyContent: 'space-around', flex: 1, alignItems: 'flex-end', marginBottom: 25 }}>
+        <TouchableOpacity onPress={PickImage} style={styles.galeriaButton} >
+          <Image source={Galeria} style={styles.imagemGaleria} />
+          {image && <Image source={{ uri: image }} style={{
+            width: 200,
+            height: 200
+          }} />}
+        </TouchableOpacity>
 
-      <TouchableOpacity  onPress={() => { navigation.navigate("Camera");}} style={styles.camerabutton}>
-        <Text style={styles.textobuttoncamera}>Abrir câmera</Text>
-        <Image source={require("../../assets/images/camera.png")} style={styles.imagemcamera} />
-      </TouchableOpacity>
-           
+        <TouchableOpacity onPress={() => { navigation.navigate("Camera") }} style={styles.cameraButton}>
+          <IconPhosphor.Camera size={40} color="#fff" />
+          <Text style={styles.textoButtonCamera}>Abrir câmera</Text>
+        </TouchableOpacity>
+      </View>
     </View>
-    
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#FFF',
+    backgroundColor: '#fff',
+    flex: 1,
   },
-  logo:{
-    marginVertical: '45%',
-    marginLeft: '22.5%',
-    justifyContentent: 'center',
-    alignItems:'center',
-
+  logo: {
   },
-  titulo:{
-   //fontFamily: 'Sora',
+  titulo: {
     fontWeight: 'bold',
     fontSize: 28,
     textAlign: 'center',
     color: '#080218',
-    position:'absolute',
     width: 364,
     height: 70,
     lineHeight: 35,
-    marginVertical: '105%',
     marginLeft: '6%',
+    marginBottom: 15
   },
-  textocorpo: {
-    position: 'absolute',
+  textoCorpo: {
     width: 364,
-    height: 100,
-    left: 0, 
-    top: '84%',
-    //fontFamily: 'Sora',
     fontStyle: 'normal',
     marginLeft: 24,
     fontSize: 16,
     lineHeight: 20,
     textAlign: 'justify',
-    color: '#A3A3B3',
+    color: '#A3A3B3'
   },
-
-  /* Botão da galeria*/
-  galeriabutton:{
+  galeriaButton: {
     justifyContent: 'center',
     padding: 8,
-    marginLeft: 24,
     alignItems: 'center',
     width: 64,
     height: 64,
-    backgroundColor:'#764AF1',
+    backgroundColor: '#764AF1',
     opacity: 0.7,
     borderRadius: 24,
-    alignSelf: 'stretch',
-    top: '29%'
-},
-  imagemgaleria:{
+  },
+  imagemGaleria: {
     width: 40,
-    height: 40,    
+    height: 40,
+  },
+  cameraButton: {
+    width: 290,
+    height: 64,
 
-},
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
 
-/* Botão da câmera */
-  
-camerabutton:{
-  justifyContent: 'right',
-  alignItems: 'center',
-  passing:10,
-  gap: 10,
-
-  width: 290,
-  height: 64,
-
-  backgroundColor: '#764af1',
-  borderRadius: 24,
-  order: 1,
-  top: '20%',
-  marginLeft:'25%',
-},
-imagemcamera:{
-  marginRight:'55%',
-  top: '18%',
-  width: 45,
-  height: 45,
-  justifyContent: 'left',
-
-},
-textobuttoncamera:{
-  width: 134,
-  height: 25,
-  position: 'absolute',
-  top: '35%',
-  //fontFamily:'Sora',
-  fontWeight: 'Semibold',
-  fontStyle: 'normal',
-  fontSize: 20,
-  lineHeight: 25,
-  textAlign: 'right',
-  color: '#FFF',
-  
-
-},
-  navigation:{
-    position:'absolute',
+    backgroundColor: '#764af1',
+    borderRadius: 24,
+  },
+  imagemCamera: {
+    width: 45,
+    height: 45,
+  },
+  textoButtonCamera: {
+    width: 134,
+    height: 25,
+    fontStyle: 'normal',
+    fontSize: 20,
+    lineHeight: 25,
+    marginLeft: 15,
+    color: '#FFF',
+  },
+  navigation: {
+    position: 'absolute',
     width: 60,
     height: 60,
     background: '#FFF',
     borderRadius: 16,
     alignItems: 'flex-start',
     padding: 20,
-    top: 50,
     marginLeft: 340,
-  },
-});
-
-/*<Image source={require("./src/assets/navigacao.png")} style={styles.navigationbutton}/>*/ 
+  }
+})

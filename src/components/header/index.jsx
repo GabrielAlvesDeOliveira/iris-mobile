@@ -2,6 +2,7 @@ import Logo from "../Logo";
 import { List } from "phosphor-react-native";
 import { ArrowLeft } from 'phosphor-react-native';
 import { HeaderWrapper, HeaderButton } from "./styles";
+import { TouchableOpacity } from "react-native";
 
 const Header = ({
     navigation,
@@ -13,7 +14,9 @@ const Header = ({
         <HeaderWrapper>
             {
                 isHome ? (
-                    <Logo />
+                    <TouchableOpacity onPress={() => navigation.navigate('Start')}>
+                        <Logo />
+                    </TouchableOpacity>
                 ) : (
                     <HeaderButton
                         onPress={() => {

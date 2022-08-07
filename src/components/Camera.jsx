@@ -57,7 +57,7 @@ export default function CameraModal({ navigation, modalVisible, setVisible }) {
 
   };
 
-  let takePic = async () => {
+  const takePic = async () => {
 
     let options = {
 
@@ -69,7 +69,7 @@ export default function CameraModal({ navigation, modalVisible, setVisible }) {
 
     let newPhoto = await camRef.current.takePictureAsync(options);
     setPhoto(newPhoto);
-
+    navigation.navigate('LabelsResults')
   };
 
   if (photo) {
@@ -191,7 +191,7 @@ export default function CameraModal({ navigation, modalVisible, setVisible }) {
 
       <Camera style={styles.camera} type={camType} flashMode={flash} ref={camRef} zoom={zoomScale} autoFocus={Camera.Constants.AutoFocus.auto}>
         <View style={styles.headerCam}>
-          <TouchableOpacity onPress={() => { navigation.navigate("Home"); }}>
+           <TouchableOpacity onPress={() => { navigation.navigate("Home"); }}>
             <IconPhosphor.X size={60} color="#fff" />
           </TouchableOpacity>
           <View style={styles.zoomButton}>
@@ -211,11 +211,11 @@ export default function CameraModal({ navigation, modalVisible, setVisible }) {
             <IconPhosphor.Image size={60} color="#fff" />
           </TouchableOpacity>
           <TouchableOpacity onPress={takePic}>
-              <IconPhosphor.Camera size={60} color="#fff" style={{display: 'inline-block', borderRadius: '60px', boxShadow: '0 0 6px #888'}} />
+              <IconPhosphor.Camera size={60} color="#fff" />
           </TouchableOpacity>
           <TouchableOpacity onPress={() => toggleFlash()}>
             {flash === Camera.Constants.FlashMode.on ? ( <IconPhosphor.Lightning size={60} color={"#fff"} /> ) : ( <IconPhosphor.LightningSlash size={60} color={"#fff"} /> )}
-          </TouchableOpacity>
+          </TouchableOpacity> 
         </View>
       </Camera>
 

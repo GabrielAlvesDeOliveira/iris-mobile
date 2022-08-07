@@ -12,7 +12,7 @@ export default function FunctionBox({ navigation, image, label, color, setVisibl
   }
 
   return (
-    <TouchableOpacity style={styles.container} onPress={() => navigation.navigate('Home')}>
+    <TouchableOpacity style={styles.container} onPress={() => navigation.navigate('Recognition')}>
       <View style={{backgroundColor: transformer(color), borderRadius: 10, padding: 7}}>
         <Image source={image} style={styles.image} />
       </View>

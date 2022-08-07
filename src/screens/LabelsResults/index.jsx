@@ -1,4 +1,4 @@
-import Header from '../../components/Header';
+import Header from '../../components/header';
 import CameraImage from '../../../assets/images/CameraPreview.png';
 import { View, Dimensions, FlatList } from "react-native";
 import { Screen, ImageBackground, LabelsWrapper, GeneralLabelsWrapper, SectionTitle, BackgroundRounded } from "./styled";
