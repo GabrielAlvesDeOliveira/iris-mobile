@@ -69,7 +69,7 @@ export default function CameraModal({ navigation, modalVisible, setVisible }) {
 
     let newPhoto = await camRef.current.takePictureAsync(options);
     setPhoto(newPhoto);
-
+    navigation.navigate('LabelsResults')
   };
 
   if (photo) {

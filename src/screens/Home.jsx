@@ -1,10 +1,6 @@
 import React, { useState } from 'react'
 import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native'
 
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
-import IconFA from 'react-native-vector-icons/FontAwesome'
-import IconAD from 'react-native-vector-icons/AntDesign'
-
 import FunctionBox from '../components/FunctionBox'
 import CameraModal from '../components/Camera'
 import Header from '../components/header'
@@ -14,10 +10,10 @@ export default function Home({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Header
-        isHome={true}
-        navigation={navigation}
-      />
+        <Header
+          isHome={true}
+          navigation={navigation}
+        />
       <View style={styles.functions}>
         <Text style={styles.hello}> Bem-vindo a Iris! </Text>
         <View style={styles.functionBoxes}>

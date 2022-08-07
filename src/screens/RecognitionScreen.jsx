@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, Image, Platform, TouchableOpacity } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
+import * as IconPhosphor from "phosphor-react-native";
 
 import Header from '../components/header';
 
 import Icon from '../../assets/images/Icon.png';
 import Galeria from '../../assets/images/galeria.png';
-import Camera from '../../assets/images/camera.png';
 
 export default function App({ navigation }) {
   const [image, setImage] = useState(null);
@@ -27,11 +27,11 @@ export default function App({ navigation }) {
   return (
     <View style={styles.container}>
       <Header navigation={navigation} isHome={false} />
-      <View style={{ alignItems: 'center', flex: 1, justifyContent: 'flex-end' }}>
+      <View style={{ alignItems: 'center', justifyContent: 'flex-end' }}>
         <Image source={Icon} style={styles.logo} />
       </View>
 
-      <View style={{flex: 1, justifyContent: 'flex-end'}}>
+      <View style={{ flex: 1, justifyContent: 'flex-end' }}>
         <Text style={styles.titulo}>Reconhecimento de Objetos e Ações</Text>
         <Text style={styles.textoCorpo}>Identifique objetos com a nossa tecnologia de reconhecimento de objetos e ações. Selecione uma imagem ou tire uma foto, e retornaremos rótulos relacionados a sua imagem. </Text>
       </View>
@@ -46,7 +46,7 @@ export default function App({ navigation }) {
         </TouchableOpacity>
 
         <TouchableOpacity onPress={() => { navigation.navigate("Camera") }} style={styles.cameraButton}>
-          <Image source={Camera} style={styles.imagemCamera} />
+          <IconPhosphor.Camera size={40} color="#fff" />
           <Text style={styles.textoButtonCamera}>Abrir câmera</Text>
         </TouchableOpacity>
       </View>
