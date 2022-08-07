@@ -11,6 +11,11 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useFonts, Sora_400Regular, Sora_600SemiBold, Sora_700Bold } from '@expo-google-fonts/sora';
 
+import optionsScreen from './src/components/NavBar'
+import Camera from './src/components/Camera'
+import RecognitionScreen from './src/screens/RecognitionScreen'
+import Start from './src/screens/StartScreen'
+
 export default function App() {
   const deviceTheme = useColorScheme();
   const Stack = createNativeStackNavigator();
@@ -35,9 +40,12 @@ export default function App() {
           <StatusBar hidden />
           <Stack.Navigator screenOptions={{
             headerShown: false
-          }}>
+          }} initialRouteName='Start'>
+            <Stack.Screen name="Start" component={Start} />
+            <Stack.Screen name="Options" component={optionsScreen} />
+            <Stack.Screen name="Recognition" component={RecognitionScreen} />
+            <Stack.Screen name="Camera" component={Camera} />
             <Stack.Screen name='LabelsResults' component={LabelsResults} />
-            <Stack.Screen name='Teste' component={Teste} />
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>
