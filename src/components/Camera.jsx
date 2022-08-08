@@ -130,35 +130,76 @@ export default function CameraModal({ navigation, modalVisible, setVisible }) {
 
   const zoomScalePlus = () => {
 
-    let x = 0.005
+    if(Platform.OS==='ios'){
 
-    if(!zoomScale){
+      let x = 0.005
 
-      setZoomScale(0);
+      if(!zoomScale){
+
+        setZoomScale(0);
+  
+      }
+  
+      x = x + zoomScale
+  
+      if(!x){
+  
+        setZoomScale(0);
+  
+      }
+  
+      setZoomScale(x);
+  
+      if(zoomScale>=0.02){
+  
+        setZoomScale(0.02);
+  
+      }
+
+    }else{
+
+      let x = 0.05
+
+      if(!zoomScale){
+
+        setZoomScale(0);
+  
+      }
+  
+      x = x + zoomScale
+  
+      if(!x){
+  
+        setZoomScale(0);
+  
+      }
+  
+      setZoomScale(x);
+  
+      if(zoomScale>=0.2){
+  
+        setZoomScale(0.2);
+  
+      }
 
     }
+    
 
-    x = x + zoomScale
-
-    if(!x){
-
-      setZoomScale(0);
-
-    }
-
-    setZoomScale(x);
-
-    if(zoomScale>=0.02){
-
-      setZoomScale(0.02);
-
-    }
+    
 
   }
 
   const zoomScaleMinus = () => {
 
-    let x = -0.005
+    if(Platform.OS==='ios'){
+
+      let x = -0.005
+
+    } else {
+
+      let x = -0.05
+
+    }
 
     if(!zoomScale){
 
