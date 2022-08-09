@@ -183,9 +183,6 @@ export default function CameraModal({ navigation, modalVisible, setVisible }) {
       }
 
     }
-    
-
-    
 
   }
 
@@ -193,34 +190,57 @@ export default function CameraModal({ navigation, modalVisible, setVisible }) {
 
     if(Platform.OS==='ios'){
 
-      let x = -0.005
+      let x = -0.005;
 
-    } else {
-
-      let x = -0.05
-
-    }
-
-    if(!zoomScale){
-
-      setZoomScale(0);
-
-    }
-
-    if(zoomScale>0){
-
-      if(!x){
+      if(!zoomScale){
 
         setZoomScale(0);
   
       }
+  
+      if(zoomScale>0){
+  
+        if(!x){
+  
+          setZoomScale(0);
+    
+        }
+  
+        x = x + zoomScale
+        setZoomScale(x);
+  
+      }else if(zoomScale<=0){
+  
+        setZoomScale(0)
+  
+      }
 
-      x = x + zoomScale
-      setZoomScale(x);
+    } else {
 
-    }else if(zoomScale<=0){
+      let x = -0.05;
 
-      setZoomScale(0)
+      if(!zoomScale){
+
+        setZoomScale(0);
+  
+      }
+  
+      if(zoomScale>0){
+  
+        if(!x){
+  
+          setZoomScale(0);
+    
+        }
+  
+        x = x + zoomScale
+        setZoomScale(x);
+  
+      }else if(zoomScale<=0){
+  
+        setZoomScale(0)
+  
+      }
 
     }
 
