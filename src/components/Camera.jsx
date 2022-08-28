@@ -6,6 +6,8 @@ import * as MediaLibrary from "expo-media-library";
 import * as ImagePicker from "expo-image-picker";
 
 import * as IconPhosphor from "phosphor-react-native";
+import getImageInfo from "../utils/getImageInfos";
+import api_client from "../config/api_client";
 
 export default function CameraModal({ navigation, modalVisible, setVisible }) {
   
@@ -67,21 +69,37 @@ export default function CameraModal({ navigation, modalVisible, setVisible }) {
 
     };
 
-    let newPhoto = await camRef.current.takePictureAsync(options);
-    setPhoto(newPhoto);
-    navigation.navigate('LabelsResults')
+    let photoTaken = await camRef.current.takePictureAsync(options);
+    setPhoto(photoTaken);
   };
 
   if (photo) {
 
     let savePhoto = () => {
+      let { originalname, type } = getImageInfo(photoTaken.uri);
 
-      MediaLibrary.saveToLibraryAsync(photo.uri).then(() => {
+      const formData = new FormData();
 
-        setPhoto(undefined);
-
+      formData.append('file', {
+        name: originalname,
+        type,
+        uri: photo.uri
       });
 
+      api_client.post('/save-image', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }).then(({ data }) => {
+        if (data.success) {
+          navigation.navigate('LabelsResults', {
+          image: photo.uri,
+            imageName: data.image.name
+          })
+        }
+      }).catch(err => {
+        console.error(err)
+      })
     };
 
     return (
