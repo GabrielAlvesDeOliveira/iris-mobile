@@ -76,7 +76,7 @@ export default function CameraModal({ navigation, modalVisible, setVisible }) {
   if (photo) {
 
     let savePhoto = () => {
-      let { originalname, type } = getImageInfo(photoTaken.uri);
+      let { originalname, type } = getImageInfo(photo.uri);
 
       const formData = new FormData();
 
