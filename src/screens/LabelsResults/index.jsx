@@ -18,7 +18,7 @@ const LabelsResults = ({ navigation, route: { params } }) => {
             imageName,
             optionals: {
                 maxLabels: 10,
-                minConfidence: 10
+                minConfidence: 75
             }
         }).then((response) => {
             console.warn(response)

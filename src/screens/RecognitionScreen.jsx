@@ -36,8 +36,6 @@ export default function App({ navigation }) {
       uri: result.uri
     });
 
-    console.warn(formData)
-
     api_client.post('/save-image', formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
