@@ -9,7 +9,7 @@ import {
 const RecognitionLabelsCard = ({
     image,
     label,
-    percentage, 
+    percentage,
     isHorizontal = false
 }) => {
     const size = !isHorizontal ? '120px' : '80px';
@@ -22,7 +22,7 @@ const RecognitionLabelsCard = ({
         >
             <ObjectFocus
                 size={size}
-                source={image}
+                source={{ uri: image }}
                 corner={corner}
             />
 

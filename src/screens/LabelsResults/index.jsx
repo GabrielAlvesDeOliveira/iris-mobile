@@ -1,6 +1,6 @@
-import Header from '../../components/header';
+import Header from '../../components/Header';
+import { View, Dimensions, FlatList, Text } from "react-native";
 import CameraImage from '../../../assets/images/CameraPreview.png';
-import { View, Dimensions, FlatList } from "react-native";
 import { Screen, ImageBackground, LabelsWrapper, GeneralLabelsWrapper, SectionTitle, BackgroundRounded } from "./styled";
 import RecognitionLabelsCard from '../../components/ResultsCard/RecognitionLabels';
 
@@ -19,16 +19,18 @@ const data = [{
     percentage: '100%'
 }]
 
-const LabelsResults = ({ navigation }) => {
+const LabelsResults = ({ navigation, route: { params } }) => {
     const windowWidth = Dimensions.get('window').width;
     const topMargin = (62 * windowWidth) / 100;
+    const { image, filename } = params;
 
     return (
         <Screen>
             <Header navigation={navigation} />
+            <Text>{filename} R</Text>
             <ImageBackground
                 size={windowWidth}
-                source={CameraImage}
+                source={{ uri: image }}
             />
 
             <LabelsWrapper
@@ -44,7 +46,7 @@ const LabelsResults = ({ navigation }) => {
                             <RecognitionLabelsCard
                                 key={index}
                                 label={item.label}
-                                image={CameraImage}
+                                image={image}
                                 percentage={item.percentage}
                             />
                         )}
@@ -62,7 +64,7 @@ const LabelsResults = ({ navigation }) => {
                             <RecognitionLabelsCard
                                 key={index}
                                 label={item.label}
-                                image={CameraImage}
+                                image={image}
                                 isHorizontal={true}
                                 percentage={item.percentage}
                             />
