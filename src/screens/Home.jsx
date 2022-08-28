@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native'
 
 import FunctionBox from '../components/FunctionBox'
 import CameraModal from '../components/Camera'
-import Header from '../components/header'
+import Header from '../components/Header'
 
 export default function Home({ navigation }) {
   const [isVisible, setVisible] = useState(false)

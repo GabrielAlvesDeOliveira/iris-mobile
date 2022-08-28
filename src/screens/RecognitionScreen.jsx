@@ -3,12 +3,13 @@ import { StyleSheet, Text, View, Image, Platform, TouchableOpacity } from 'react
 import * as ImagePicker from 'expo-image-picker';
 import * as IconPhosphor from "phosphor-react-native";
 
-import Header from '../components/header';
+import Header from '../components/Header';
 
 import Icon from '../../assets/images/Icon.png';
 import Galeria from '../../assets/images/galeria.png';
 
 import api_client from '../config/api_client';
+import getImageInfo from '../utils/getImageInfos';
 
 export default function App({ navigation }) {
   const [image, setImage] = useState(null);
@@ -20,28 +21,37 @@ export default function App({ navigation }) {
       aspect: [4, 3],
       quality: 1,
     })
-    console.log(result)
+
     if (!result.cancelled) {
       setImage(result.uri)
     }
 
+    const { originalname, type } = getImageInfo(result.uri);
+
     const formData = new FormData();
 
     formData.append('file', {
-      originalname: 'image.jpg',
-      type: 'image/jpg',
+      name: originalname,
+      type,
       uri: result.uri
     });
 
-    console.log(formData)
+    console.warn(formData)
 
     api_client.post('/save-image', formData, {
       headers: {
-        Accept: 'application/json',
-        'Content-Type': 'multipart/form-data; boundary='
+        'Content-Type': 'multipart/form-data'
       }
-    }).then(res => { console.warn(res) }).catch(err => { console.error(err) })
-
+    }).then(({ data }) => {
+      if (data.success) {
+        navigation.navigate('LabelsResults', {
+          image: result.uri,
+          imageName: data.image.name
+        })
+      }
+    }).catch(err => {
+      console.error(err)
+    })
   }
 
   return (
