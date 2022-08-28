@@ -46,7 +46,7 @@ export default function App({ navigation }) {
       if (data.success) {
         navigation.navigate('LabelsResults', {
           image: result.uri,
-          filename: data.image.name
+          imageName: data.image.name
         })
       }
     }).catch(err => {
