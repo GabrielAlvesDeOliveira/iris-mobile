@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native'
 
-import FunctionBox from '../components/FunctionBox'
-import CameraModal from '../components/Camera'
-import Header from '../components/Header'
+import FunctionBox from '../../Shared/FunctionBox/FunctionBox'
+import CameraModal from '../../../functions/Camera'
+import Header from '../../Shared/Header/Header'
 
 export default function Home({ navigation }) {
   const [isVisible, setVisible] = useState(false)
@@ -28,28 +28,28 @@ export default function Home({ navigation }) {
           <FunctionBox
             color={'#F806CC'}
             navigation={navigation}
-            image={require('../../assets/images/ObjectRecognition.png')}
+            image={require('../../../../assets/images/objrecognition.png')}
             label='Reconhecimento de objetos'
             setVisible={setVisible}
           />
           <FunctionBox
             color={'#3B50FF'}
             navigation={navigation}
-            image={require('../../assets/images/TextDetection.png')}
+            image={require('../../../../assets/images/textdetection.png')}
             label='Detecção de texto'
             setVisible={setVisible}
           />
           <FunctionBox
             color={'#1DB518'}
             navigation={navigation}
-            image={require('../../assets/images/FaceDetection.png')}
+            image={require('../../../../assets/images/facedetection.png')}
             label='Detecção de análise de rosto'
             setVisible={setVisible}
           />
           <FunctionBox
             color={'#6D25CC'}
             navigation={navigation}
-            image={require('../../assets/images/CelebrityDetection.png')}
+            image={require('../../../../assets/images/celebritydetection.png')}
             label='Reconhecimento de celebridades'
             setVisible={setVisible}
           />

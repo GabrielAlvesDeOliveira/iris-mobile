@@ -5,9 +5,10 @@ import { Camera, CameraType } from "expo-camera";
 import * as MediaLibrary from "expo-media-library";
 import * as ImagePicker from "expo-image-picker";
 
-import * as IconPhosphor from "phosphor-react-native";
 import getImageInfo from "../utils/getImageInfos";
 import api_client from "../config/api_client";
+
+import * as IconPhosphor from "phosphor-react-native";
 
 export default function CameraModal({ navigation, modalVisible, setVisible }) {
   
@@ -16,7 +17,6 @@ export default function CameraModal({ navigation, modalVisible, setVisible }) {
   const [hasCameraPermission, setHasCameraPermission] = useState();
   const [hasMediaLibraryPermission, setHasMediaLibraryPermission] = useState();
   const [photo, setPhoto] = useState();
-  
 
   const [selectedImage, setSelectedImage] = useState(null);
   const [camType, setCamType] = useState(CameraType.back);
@@ -50,23 +50,16 @@ export default function CameraModal({ navigation, modalVisible, setVisible }) {
   }
 
   const toggleFlash = () => {
-
     setFlash(
-      
       flash === Camera.Constants.FlashMode.off ? Camera.Constants.FlashMode.on : Camera.Constants.FlashMode.off
-
     );
-
   };
 
   const takePic = async () => {
-
     let options = {
-
       quality: 1,
       base64: false,
       exif: false,
-
     };
 
     let photoTaken = await camRef.current.takePictureAsync(options);
@@ -74,10 +67,8 @@ export default function CameraModal({ navigation, modalVisible, setVisible }) {
   };
 
   if (photo) {
-
     let savePhoto = () => {
       let { originalname, type } = getImageInfo(photo.uri);
-
       const formData = new FormData();
 
       formData.append('file', {
@@ -103,75 +94,42 @@ export default function CameraModal({ navigation, modalVisible, setVisible }) {
     };
 
     return (
-
       <SafeAreaView style={styles.container}>
         <Image source={{ uri: photo.uri }} style={styles.preview}/>
-          { hasMediaLibraryPermission ? ( <Button title="Salvar" onPress={savePhoto} /> ) : ( <Text> Ative a permissão de acessar a biblioteca de mídias para salvar imagens! </Text> )}
-        <Button title="Apagar" onPress={() => setPhoto(undefined)} />
+         <Button title="Reconhecer objetos" onPress={savePhoto} />
+        <Button title="Tirar foto novamente" onPress={() => setPhoto(undefined)} />
       </SafeAreaView>
-
     );
-
   }
 
-  const selectImage = async () => {
-
-    let res = await ImagePicker.launchImageLibraryAsync({
-
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      quality: 1,
-      allowsEditing: true,
-
-    });
-
-    if (!res.cancelled) {
-
-      setSelectedImage(result.uri);
-
-    }
-
-  };
 
   const switchCameraType = () => {
 
     if(camType === 'back'){
-
       setCamType('front')
-
     }else{
-
       setCamType('back')
-
     }
-
   }
 
   const zoomScalePlus = () => {
 
     if(Platform.OS==='ios'){
-
       let x = 0.005
 
       if(!zoomScale){
-
         setZoomScale(0);
-  
       }
   
       x = x + zoomScale
   
       if(!x){
-  
         setZoomScale(0);
-  
       }
-  
       setZoomScale(x);
   
       if(zoomScale>=0.02){
-  
         setZoomScale(0.02);
-  
       }
 
     }else{
@@ -179,29 +137,21 @@ export default function CameraModal({ navigation, modalVisible, setVisible }) {
       let x = 0.05
 
       if(!zoomScale){
-
         setZoomScale(0);
-  
       }
-  
+      
       x = x + zoomScale
   
       if(!x){
-  
         setZoomScale(0);
-  
       }
   
       setZoomScale(x);
   
       if(zoomScale>=0.2){
-  
         setZoomScale(0.2);
-  
       }
-
     }
-
   }
 
   const zoomScaleMinus = () => {
@@ -211,26 +161,17 @@ export default function CameraModal({ navigation, modalVisible, setVisible }) {
       let x = -0.005;
 
       if(!zoomScale){
-
         setZoomScale(0);
-  
       }
   
       if(zoomScale>0){
-  
         if(!x){
-  
           setZoomScale(0);
-    
         }
-  
         x = x + zoomScale
         setZoomScale(x);
-  
       }else if(zoomScale<=0){
-  
         setZoomScale(0)
-  
       }
 
     } else {
@@ -238,30 +179,19 @@ export default function CameraModal({ navigation, modalVisible, setVisible }) {
       let x = -0.05;
 
       if(!zoomScale){
-
         setZoomScale(0);
-  
       }
   
       if(zoomScale>0){
-  
         if(!x){
-  
           setZoomScale(0);
-    
         }
-  
         x = x + zoomScale
         setZoomScale(x);
-  
       }else if(zoomScale<=0){
-  
         setZoomScale(0)
-  
       }
-
     }
-
   }
 
   function CamBody(){
@@ -286,9 +216,6 @@ export default function CameraModal({ navigation, modalVisible, setVisible }) {
           </TouchableOpacity>
         </View>
         <View style={styles.buttonView}>
-          <TouchableOpacity onPress={selectImage}>
-            <IconPhosphor.Image size={60} color="#fff" />
-          </TouchableOpacity>
           <TouchableOpacity onPress={takePic}>
               <IconPhosphor.Camera size={60} color="#fff" />
           </TouchableOpacity>
@@ -313,35 +240,26 @@ export default function CameraModal({ navigation, modalVisible, setVisible }) {
 
 const styles = StyleSheet.create({
   container: {
-
     flex: 1,
-
   },
   headerCam: {
-
     flexDirection: 'row',
     padding: 20,
     width: Dimensions.get("window").width,
     justifyContent: 'space-between'
-
   },
   zoomButton: {
-
     flexDirection: 'row',
     padding: 25,
     justifyContent: 'space-between',
     width: 180
-
   },
   camera: {
-    
     flex: 1,
     height: Dimensions.get("window").height,
     width: "100%"
-
   },
   buttonView: {
-
     flex: 1,
     width: Dimensions.get("window").width,
     height: Dimensions.get("window").height,
@@ -349,18 +267,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "flex-end",
     padding: 50,
-
   },
   phosphorFlash: {
-
     alignItems: "center",
-
   },
   preview: {
-
     alignSelf: 'stretch',
     flex: 1
-
   }
 
 });

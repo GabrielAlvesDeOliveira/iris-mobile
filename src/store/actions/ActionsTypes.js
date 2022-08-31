@@ -1,1 +1,0 @@
-export const TAKE_PHOTO = 'TAKE_PHOTO';
