@@ -1,9 +1,12 @@
-import Header from '../../components/Header';
-import { useState, useEffect } from 'react';
-import api_client from '../../config/api_client';
-import formatPercentage from '../../utils/formatPercentage';
 import { View, Dimensions, FlatList, Text } from "react-native";
-import RecognitionLabelsCard from '../../components/ResultsCard/RecognitionLabels';
+import { useState, useEffect } from 'react';
+
+import api_client from '../../../config/api_client';
+import formatPercentage from '../../../utils/formatPercentage';
+
+import RecognitionLabelsCard from './RecognitionLabels/RecognitionLabels';
+import Header from '../../Shared/Header/Header';
+
 import { Screen, ImageBackground, LabelsWrapper, GeneralLabelsWrapper, SectionTitle, BackgroundRounded } from "./styled";
 
 const LabelsResults = ({ navigation, route: { params } }) => {
@@ -21,7 +24,7 @@ const LabelsResults = ({ navigation, route: { params } }) => {
                 minConfidence: 75
             }
         }).then((response) => {
-            console.warn(response)
+
             const { data } = response;
 
             if (data.success) {

@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
 import hexRGB from "hex-rgb";
-export default function FunctionBox({ navigation, image, label, color, setVisible }) {
+export default function FunctionBox({ navigation, image, label, color }) {
 
   function transformer(color){
     const rgb = hexRGB(`${color}`);

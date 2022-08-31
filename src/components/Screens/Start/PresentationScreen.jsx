@@ -5,7 +5,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Image source={
-        require('./assets/images/iris.png')
+        require('../../../../assets/images/iris.png')
       }
       style={styles.logo} />
       <StatusBar style="auto" />

@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, Image, View, TouchableOpacity } from 'react-native';
-import bigLogo from '../../assets/images/biglogo.png'
+import bigLogo from '../../../../assets/images/biglogo.png'
 
 export default function App({ navigation }) {
     return (
@@ -27,14 +27,14 @@ export default function App({ navigation }) {
     );
   }
   const styles = StyleSheet.create({
-    container: {
+  container: {
       flex: 1,
       backgroundColor: '#fff',
       alignItems: 'center',
       justifyContent: 'center',
-    },
-    logo: {
-        width: 350,
+  },
+  logo: {
+     width: 350,
     height: 350,
     top: -50
   },
@@ -45,14 +45,12 @@ export default function App({ navigation }) {
     top: -20
   },
   text2: {
-    fontFamily: "sans-serif",
     fontSize: 21.9,
     color: "#726978",
     letterSpacing: 1,
     top: -10
   },
   buttonText: {
-    fontFamily: "sans-serif", 
     fontSize: 20,
     color: "#FFF",
     letterSpacing: 1

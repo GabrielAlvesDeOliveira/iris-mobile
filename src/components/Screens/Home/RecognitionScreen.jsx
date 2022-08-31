@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Image, Platform, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import * as IconPhosphor from "phosphor-react-native";
 
-import Header from '../components/Header';
+import Header from '../../Shared/Header/Header';
 
-import Icon from '../../assets/images/Icon.png';
-import Galeria from '../../assets/images/galeria.png';
+import Icon from '../../../../assets/images/icon.png'
+import Gallery from '../../../../assets/images/gallery.png';
 
-import api_client from '../config/api_client';
-import getImageInfo from '../utils/getImageInfos';
+import api_client from '../../../config/api_client';
+import getImageInfo from '../../../utils/getImageInfos';
 
 export default function App({ navigation }) {
   const [image, setImage] = useState(null);
@@ -65,8 +65,8 @@ export default function App({ navigation }) {
       </View>
 
       <View style={{ flexDirection: 'row', justifyContent: 'space-around', flex: 1, alignItems: 'flex-end', marginBottom: 25 }}>
-        <TouchableOpacity onPress={PickImage} style={styles.galeriaButton} >
-          <Image source={Galeria} style={styles.imagemGaleria} />
+        <TouchableOpacity onPress={PickImage} style={styles.GalleryButton} >
+          <Image source={Gallery} style={styles.imagemGallery} />
           {image && <Image source={{ uri: image }} style={{
             width: 200,
             height: 200
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
     textAlign: 'justify',
     color: '#A3A3B3'
   },
-  galeriaButton: {
+  GalleryButton: {
     justifyContent: 'center',
     padding: 8,
     alignItems: 'center',
@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
     opacity: 0.7,
     borderRadius: 24,
   },
-  imagemGaleria: {
+  imagemGallery: {
     width: 40,
     height: 40,
   },

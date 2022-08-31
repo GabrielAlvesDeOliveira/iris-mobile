@@ -1,4 +1,4 @@
-import Logo from "../Logo";
+import Logo from '../../Logo/Logo'
 import { List } from "phosphor-react-native";
 import { ArrowLeft } from 'phosphor-react-native';
 import { HeaderWrapper, HeaderButton } from "./styles";
