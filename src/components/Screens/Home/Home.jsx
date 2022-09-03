@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native'
 
 import FunctionBox from '../../Shared/FunctionBox/FunctionBox'
-import CameraModal from '../../../functions/Camera'
 import Header from '../../Shared/Header/Header'
 
 export default function Home({ navigation }) {
@@ -56,8 +55,6 @@ export default function Home({ navigation }) {
 
         </View>
       </View>
-
-      <CameraModal modalVisible={isVisible} setVisible={setVisible} navigation={navigation} />
     </View>
   )
 }

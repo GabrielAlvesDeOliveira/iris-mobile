@@ -3,7 +3,6 @@ import { Modal, Text, View, StyleSheet, SafeAreaView, TouchableOpacity, Dimensio
 
 import { Camera, CameraType } from "expo-camera";
 import * as MediaLibrary from "expo-media-library";
-import * as ImagePicker from "expo-image-picker";
 
 import getImageInfo from "../utils/getImageInfos";
 import api_client from "../config/api_client";
@@ -17,36 +16,27 @@ export default function CameraModal({ navigation, modalVisible, setVisible }) {
   const [hasCameraPermission, setHasCameraPermission] = useState();
   const [hasMediaLibraryPermission, setHasMediaLibraryPermission] = useState();
   const [photo, setPhoto] = useState();
-
-  const [selectedImage, setSelectedImage] = useState(null);
   const [camType, setCamType] = useState(CameraType.back);
   const [flash, setFlash] = useState(Camera.Constants.FlashMode.off);
   const [zoomScale, setZoomScale] = useState(0)
 
   useEffect(() => {
-
     (async () => {
-      
       const camPermission = await Camera.requestCameraPermissionsAsync();
       const mediaLibPermission = await MediaLibrary.requestPermissionsAsync();
 
       setHasCameraPermission(camPermission.status === "granted");
       setHasMediaLibraryPermission(mediaLibPermission.status === "granted");
-
     })();
  
   }, []);
 
   if (hasCameraPermission === null) {
-    
     return <View />;
-    
   }
 
-  if (hasCameraPermission === false) {
-    
-    return <Text>Sem permissão para usar a câmera</Text>;
-    
+  if (hasCameraPermission === false) {   
+    return <Text>Sem permissão para usar a câmera</Text>;  
   }
 
   const toggleFlash = () => {
@@ -102,7 +92,6 @@ export default function CameraModal({ navigation, modalVisible, setVisible }) {
     );
   }
 
-
   const switchCameraType = () => {
 
     if(camType === 'back'){
@@ -120,14 +109,12 @@ export default function CameraModal({ navigation, modalVisible, setVisible }) {
       if(!zoomScale){
         setZoomScale(0);
       }
-  
       x = x + zoomScale
-  
+
       if(!x){
         setZoomScale(0);
       }
       setZoomScale(x);
-  
       if(zoomScale>=0.02){
         setZoomScale(0.02);
       }
@@ -135,13 +122,10 @@ export default function CameraModal({ navigation, modalVisible, setVisible }) {
     }else{
 
       let x = 0.05
-
       if(!zoomScale){
         setZoomScale(0);
       }
-      
       x = x + zoomScale
-  
       if(!x){
         setZoomScale(0);
       }
@@ -200,7 +184,9 @@ export default function CameraModal({ navigation, modalVisible, setVisible }) {
 
       <Camera style={styles.camera} type={camType} flashMode={flash} ref={camRef} zoom={zoomScale} autoFocus={Camera.Constants.AutoFocus.auto}>
         <View style={styles.headerCam}>
-           <TouchableOpacity onPress={() => { navigation.navigate("Home"); }}>
+           <TouchableOpacity onPress={() => { 
+            setVisible(false);
+            }}>
             <IconPhosphor.X size={60} color="#fff" />
           </TouchableOpacity>
           <View style={styles.zoomButton}>
