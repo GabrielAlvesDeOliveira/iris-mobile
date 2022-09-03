@@ -4,6 +4,7 @@ import * as ImagePicker from 'expo-image-picker';
 import * as IconPhosphor from "phosphor-react-native";
 
 import Header from '../../Shared/Header/Header';
+import CameraModal from '../../../functions/Camera';
 
 import Icon from '../../../../assets/images/icon.png'
 import Gallery from '../../../../assets/images/gallery.png';
@@ -13,6 +14,7 @@ import getImageInfo from '../../../utils/getImageInfos';
 
 export default function App({ navigation }) {
   const [image, setImage] = useState(null);
+  const [visible, setVisible] = useState(false);
 
   const PickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -67,18 +69,18 @@ export default function App({ navigation }) {
       <View style={{ flexDirection: 'row', justifyContent: 'space-around', flex: 1, alignItems: 'flex-end', marginBottom: 25 }}>
         <TouchableOpacity onPress={PickImage} style={styles.GalleryButton} >
           <Image source={Gallery} style={styles.imagemGallery} />
-          {image && <Image source={{ uri: image }} style={{
-            width: 200,
-            height: 200
-          }} />}
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => { navigation.navigate("Camera") }} style={styles.cameraButton}>
+        <TouchableOpacity onPress={() => { setVisible(true) }} style={styles.cameraButton}>
           <IconPhosphor.Camera size={40} color="#fff" />
           <Text style={styles.textoButtonCamera}>Abrir câmera</Text>
         </TouchableOpacity>
       </View>
+
+      <CameraModal modalVisible={visible} setVisible={setVisible} navigation={navigation}/>      
+
     </View>
+
   );
 }
 
@@ -97,13 +99,13 @@ const styles = StyleSheet.create({
     width: 364,
     height: 70,
     lineHeight: 35,
-    marginLeft: '6%',
+    marginLeft: 15,
     marginBottom: 15
   },
   textoCorpo: {
     width: 364,
     fontStyle: 'normal',
-    marginLeft: 24,
+    marginLeft: 15,
     fontSize: 16,
     lineHeight: 20,
     textAlign: 'justify',
