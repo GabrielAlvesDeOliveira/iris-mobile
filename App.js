@@ -1,5 +1,4 @@
 import React from 'react';
-import 'react-native-reanimated'
 import 'react-native-gesture-handler';
 
 import { StatusBar, useColorScheme, View, Text } from 'react-native';
@@ -38,8 +37,7 @@ export default function App() {
     <ThemeProvider theme={currentTheme}>
       <NavigationContainer>
         <StatusBar hidden />
-        <Loading />
-        {/* <Stack.Navigator screenOptions={{
+        <Stack.Navigator screenOptions={{
           headerShown: false
         }} initialRouteName='Start'>
           <Stack.Screen name="Start" component={StartScreen} />
@@ -47,7 +45,7 @@ export default function App() {
           <Stack.Screen name="Recognition" component={RecognitionScreen} />
           <Stack.Screen name="Camera" component={Camera} />
           <Stack.Screen name='LabelsResults' component={LabelsResults} />
-        </Stack.Navigator> */}
+        </Stack.Navigator>
       </NavigationContainer>
     </ThemeProvider>
   );

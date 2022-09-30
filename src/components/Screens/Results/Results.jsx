@@ -1,3 +1,4 @@
+import LoadingScreen from "../../Layout/Loading";
 import { View, Dimensions, FlatList, Text } from "react-native";
 import { useState, useEffect } from 'react';
 
@@ -41,54 +42,55 @@ const LabelsResults = ({ navigation, route: { params } }) => {
     return (
         <Screen>
             <Header navigation={navigation} />
-            <ImageBackground
-                size={windowWidth}
-                source={{ uri: image }}
-            />
             {
                 labels !== null ? (
-                    <LabelsWrapper
-                        topMargin={topMargin}
-                    >
-                        <View>
-                            <FlatList
-                                data={labels.newLabels}
-                                horizontal={true}
-                                contentContainerStyle={{ paddingHorizontal: 24 }}
-                                ItemSeparatorComponent={() => (<View style={{ width: 18 }}></View>)}
-                                renderItem={({ item, index, separators }) => (
-                                    <RecognitionLabelsCard
-                                        key={index}
-                                        label={item.Name}
-                                        image={image}
-                                        percentage={formatPercentage(item.Confidence)}
-                                    />
-                                )}
-                            />
-                        </View>
+                    <>
+                        <ImageBackground
+                            size={windowWidth}
+                            source={{ uri: image }}
+                        />
+                        <LabelsWrapper
+                            topMargin={topMargin}
+                        >
+                            <View>
+                                <FlatList
+                                    data={labels.newLabels}
+                                    horizontal={true}
+                                    contentContainerStyle={{ paddingHorizontal: 24 }}
+                                    ItemSeparatorComponent={() => (<View style={{ width: 18 }}></View>)}
+                                    renderItem={({ item, index, separators }) => (
+                                        <RecognitionLabelsCard
+                                            key={index}
+                                            label={item.Name}
+                                            image={image}
+                                            percentage={formatPercentage(item.Confidence)}
+                                        />
+                                    )}
+                                />
+                            </View>
 
-                        <GeneralLabelsWrapper>
-                            <SectionTitle>Rótulos</SectionTitle>
-                            <FlatList
-                                data={labels.general}
-                                horizontal={false}
-                                contentContainerStyle={{ paddingHorizontal: 24, paddingBottom: 24 }}
-                                ItemSeparatorComponent={() => (<View style={{ height: 16 }}></View>)}
-                                renderItem={({ item, index, separators }) => (
-                                    <RecognitionLabelsCard
-                                        key={index}
-                                        label={item.Name}
-                                        image={image}
-                                        isHorizontal={true}
-                                        percentage={formatPercentage(item.Confidence)}
-                                    />
-                                )}
-                            />
-                        </GeneralLabelsWrapper>
-                    </LabelsWrapper>
-
+                            <GeneralLabelsWrapper>
+                                <SectionTitle>Rótulos</SectionTitle>
+                                <FlatList
+                                    data={labels.general}
+                                    horizontal={false}
+                                    contentContainerStyle={{ paddingHorizontal: 24, paddingBottom: 24 }}
+                                    ItemSeparatorComponent={() => (<View style={{ height: 16 }}></View>)}
+                                    renderItem={({ item, index, separators }) => (
+                                        <RecognitionLabelsCard
+                                            key={index}
+                                            label={item.Name}
+                                            image={image}
+                                            isHorizontal={true}
+                                            percentage={formatPercentage(item.Confidence)}
+                                        />
+                                    )}
+                                />
+                            </GeneralLabelsWrapper>
+                        </LabelsWrapper>
+                    </>
                 ) : (
-                    <Text>Carregando</Text>
+                    <LoadingScreen />
                 )
             }
         </Screen>
