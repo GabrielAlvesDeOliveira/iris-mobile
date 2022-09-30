@@ -1,6 +1,7 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-import Home from "../../Screens/Home/Home";
+// import Home from "../../Screens/Home/Home";
+import Home from "../../../screens/Home";
 
 import Entypo from "react-native-vector-icons/Entypo";
 import Fontisto from "react-native-vector-icons/Fontisto";
