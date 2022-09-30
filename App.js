@@ -14,6 +14,7 @@ import Camera from './src/functions/Camera';
 import RecognitionScreen from './src/components/Screens/Home/RecognitionScreen';
 import StartScreen from './src/components/Screens/Start/StartScreen';
 import LabelsResults from './src/components/Screens/Results/Results';
+import Loading from './src/components/Layout/Loading';
 
 export default function App() {
   const deviceTheme = useColorScheme();
