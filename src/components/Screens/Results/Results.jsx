@@ -45,7 +45,6 @@ const LabelsResults = ({ navigation, route: { params } }) => {
                 size={windowWidth}
                 source={{ uri: image }}
             />
-
             {
                 labels !== null ? (
                     <LabelsWrapper

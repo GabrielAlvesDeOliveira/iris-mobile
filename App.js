@@ -1,4 +1,5 @@
 import React from 'react';
+import 'react-native-reanimated'
 import 'react-native-gesture-handler';
 
 import { StatusBar, useColorScheme, View, Text } from 'react-native';
@@ -14,6 +15,7 @@ import Camera from './src/functions/Camera';
 import RecognitionScreen from './src/components/Screens/Home/RecognitionScreen';
 import StartScreen from './src/components/Screens/Start/StartScreen';
 import LabelsResults from './src/components/Screens/Results/Results';
+import Loading from './src/components/Layout/Loading';
 
 export default function App() {
   const deviceTheme = useColorScheme();
@@ -36,7 +38,8 @@ export default function App() {
     <ThemeProvider theme={currentTheme}>
       <NavigationContainer>
         <StatusBar hidden />
-        <Stack.Navigator screenOptions={{
+        <Loading />
+        {/* <Stack.Navigator screenOptions={{
           headerShown: false
         }} initialRouteName='Start'>
           <Stack.Screen name="Start" component={StartScreen} />
@@ -44,7 +47,7 @@ export default function App() {
           <Stack.Screen name="Recognition" component={RecognitionScreen} />
           <Stack.Screen name="Camera" component={Camera} />
           <Stack.Screen name='LabelsResults' component={LabelsResults} />
-        </Stack.Navigator>
+        </Stack.Navigator> */}
       </NavigationContainer>
     </ThemeProvider>
   );
