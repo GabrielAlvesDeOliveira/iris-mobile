@@ -1,4 +1,3 @@
-import { Text } from "react-native";
 import { IconWrapper, Label, ResourceButtonContainer } from "./styled";
 
 const ResourceButton = ({
@@ -11,7 +10,7 @@ const ResourceButton = ({
   return (
     <ResourceButtonContainer
       id={id}
-      onPress={() => navigation.navigate('Recognition')}
+      onPress={() => navigation.navigate('presentation', { name })}
     >
       <IconWrapper name={name}>
         <Image />

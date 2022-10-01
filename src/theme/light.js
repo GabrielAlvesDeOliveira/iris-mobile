@@ -2,27 +2,27 @@ const light = {
     colors: {
         primary: {
             main: '#A17EFF',
-            variant: '#7949FF'
+            variant: '#6C55A8'
         },
         secondary: {
-            main: '#764AF1',
-            variant: '#5821EE'
+            main: '#AC66E8',
+            variant: '#794CA0'
         },
         background: {
             main: '#FFFFFF',
-            variant: '#F4F4F4'
+            variant: '#EBEBEB'
         },
         surface: {
-            main: '#FCFAFF',
-            variant: '#F7F5FA'
+            main: '#F8F6FF',
+            variant: '#EBE5FF'
         },
         typography: {
             main: '#080218',
-            variant: '#6A6874'
+            variant: '#120538'
         },
         subtext: {
-            main: '#786980',
-            variant: '#88889D'
+            main: '#88889D',
+            variant: '#786980'
         },
         success: {
             main: '#00C398',

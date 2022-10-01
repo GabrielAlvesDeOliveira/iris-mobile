@@ -1,14 +1,13 @@
 import { useState } from "react";
-import { Text } from "react-native";
 import CameraModal from "../../functions/Camera";
 import Header from "../../components/Shared/Header/Header";
 import ResourceButton from "../../components/Buttons/ResourceButtons";
 import FaceDetection from '../../components/Images/resources/FaceDetection';
 import TextDetection from '../../components/Images/resources/TextDetection';
+import { SectionName } from "../../components/Buttons/ResourceButtons/styled";
 import ObjectRecognition from '../../components/Images/resources/ObjectRecognition';
 import CelebrityRecognition from '../../components/Images/resources/CelebrityRecognition';
 import { ContentContainer, Description, Greetings, GreetingsWrapper, ResourcesWrapper, ScreenContainer } from "./styled";
-import { SectionName } from "../../components/Buttons/ResourceButtons/styled";
 
 const Home = ({ navigation }) => {
   const [isVisible, setVisible] = useState(false);
