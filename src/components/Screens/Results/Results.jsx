@@ -25,7 +25,6 @@ const LabelsResults = ({ navigation, route: { params } }) => {
                 minConfidence: 75
             }
         }).then((response) => {
-
             const { data } = response;
 
             if (data.success) {
