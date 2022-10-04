@@ -33,9 +33,7 @@ const Header = ({
             }
 
             <HeaderButton
-                onPress={() => {
-                    console.log('sim')
-                }}
+                onPress={() => { }}
             >
                 <List
                     size={36}

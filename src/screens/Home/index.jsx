@@ -65,8 +65,6 @@ const Home = ({ navigation }) => {
           ))}
         </ResourcesWrapper>
       </ContentContainer>
-
-      <CameraModal modalVisible={isVisible} setVisible={setVisible} navigation={navigation} />
     </ScreenContainer>
   )
 }

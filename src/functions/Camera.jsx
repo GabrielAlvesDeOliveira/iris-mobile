@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Modal, Text, View, StyleSheet, SafeAreaView, TouchableOpacity, Dimensions, Image, Button, Platform } from "react-native";
+import { Text, View, StyleSheet, SafeAreaView, TouchableOpacity, Dimensions, Image, Button, Platform } from "react-native";
 
 import { Camera, CameraType } from "expo-camera";
 import * as MediaLibrary from "expo-media-library";
-import * as ImagePicker from "expo-image-picker";
 
 import getImageInfo from "../utils/getImageInfos";
 import api_client from "../config/api_client";
@@ -11,14 +10,13 @@ import api_client from "../config/api_client";
 import * as IconPhosphor from "phosphor-react-native";
 
 export default function CameraModal({ navigation, modalVisible, setVisible }) {
-  
+
   let camRef = useRef();
 
   const [hasCameraPermission, setHasCameraPermission] = useState();
   const [hasMediaLibraryPermission, setHasMediaLibraryPermission] = useState();
   const [photo, setPhoto] = useState();
 
-  const [selectedImage, setSelectedImage] = useState(null);
   const [camType, setCamType] = useState(CameraType.back);
   const [flash, setFlash] = useState(Camera.Constants.FlashMode.off);
   const [zoomScale, setZoomScale] = useState(0)
@@ -26,7 +24,7 @@ export default function CameraModal({ navigation, modalVisible, setVisible }) {
   useEffect(() => {
 
     (async () => {
-      
+
       const camPermission = await Camera.requestCameraPermissionsAsync();
       const mediaLibPermission = await MediaLibrary.requestPermissionsAsync();
 
@@ -34,19 +32,19 @@ export default function CameraModal({ navigation, modalVisible, setVisible }) {
       setHasMediaLibraryPermission(mediaLibPermission.status === "granted");
 
     })();
- 
+
   }, []);
 
   if (hasCameraPermission === null) {
-    
+
     return <View />;
-    
+
   }
 
   if (hasCameraPermission === false) {
-    
+
     return <Text>Sem permissão para usar a câmera</Text>;
-    
+
   }
 
   const toggleFlash = () => {
@@ -84,7 +82,7 @@ export default function CameraModal({ navigation, modalVisible, setVisible }) {
       }).then(({ data }) => {
         if (data.success) {
           navigation.navigate('LabelsResults', {
-          image: photo.uri,
+            image: photo.uri,
             imageName: data.image.name
           })
         }
@@ -95,8 +93,8 @@ export default function CameraModal({ navigation, modalVisible, setVisible }) {
 
     return (
       <SafeAreaView style={styles.container}>
-        <Image source={{ uri: photo.uri }} style={styles.preview}/>
-         <Button title="Reconhecer objetos" onPress={savePhoto} />
+        <Image source={{ uri: photo.uri }} style={styles.preview} />
+        <Button title="Reconhecer objetos" onPress={savePhoto} />
         <Button title="Tirar foto novamente" onPress={() => setPhoto(undefined)} />
       </SafeAreaView>
     );
@@ -105,50 +103,50 @@ export default function CameraModal({ navigation, modalVisible, setVisible }) {
 
   const switchCameraType = () => {
 
-    if(camType === 'back'){
+    if (camType === 'back') {
       setCamType('front')
-    }else{
+    } else {
       setCamType('back')
     }
   }
 
   const zoomScalePlus = () => {
 
-    if(Platform.OS==='ios'){
+    if (Platform.OS === 'ios') {
       let x = 0.005
 
-      if(!zoomScale){
+      if (!zoomScale) {
         setZoomScale(0);
       }
-  
+
       x = x + zoomScale
-  
-      if(!x){
+
+      if (!x) {
         setZoomScale(0);
       }
       setZoomScale(x);
-  
-      if(zoomScale>=0.02){
+
+      if (zoomScale >= 0.02) {
         setZoomScale(0.02);
       }
 
-    }else{
+    } else {
 
       let x = 0.05
 
-      if(!zoomScale){
+      if (!zoomScale) {
         setZoomScale(0);
       }
-      
+
       x = x + zoomScale
-  
-      if(!x){
+
+      if (!x) {
         setZoomScale(0);
       }
-  
+
       setZoomScale(x);
-  
-      if(zoomScale>=0.2){
+
+      if (zoomScale >= 0.2) {
         setZoomScale(0.2);
       }
     }
@@ -156,21 +154,21 @@ export default function CameraModal({ navigation, modalVisible, setVisible }) {
 
   const zoomScaleMinus = () => {
 
-    if(Platform.OS==='ios'){
+    if (Platform.OS === 'ios') {
 
       let x = -0.005;
 
-      if(!zoomScale){
+      if (!zoomScale) {
         setZoomScale(0);
       }
-  
-      if(zoomScale>0){
-        if(!x){
+
+      if (zoomScale > 0) {
+        if (!x) {
           setZoomScale(0);
         }
         x = x + zoomScale
         setZoomScale(x);
-      }else if(zoomScale<=0){
+      } else if (zoomScale <= 0) {
         setZoomScale(0)
       }
 
@@ -178,29 +176,29 @@ export default function CameraModal({ navigation, modalVisible, setVisible }) {
 
       let x = -0.05;
 
-      if(!zoomScale){
+      if (!zoomScale) {
         setZoomScale(0);
       }
-  
-      if(zoomScale>0){
-        if(!x){
+
+      if (zoomScale > 0) {
+        if (!x) {
           setZoomScale(0);
         }
         x = x + zoomScale
         setZoomScale(x);
-      }else if(zoomScale<=0){
+      } else if (zoomScale <= 0) {
         setZoomScale(0)
       }
     }
   }
 
-  function CamBody(){
+  function CamBody() {
 
-    return(
+    return (
 
       <Camera style={styles.camera} type={camType} flashMode={flash} ref={camRef} zoom={zoomScale} autoFocus={Camera.Constants.AutoFocus.auto}>
         <View style={styles.headerCam}>
-           <TouchableOpacity onPress={() => { navigation.navigate("Home"); }}>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
             <IconPhosphor.X size={60} color="#fff" />
           </TouchableOpacity>
           <View style={styles.zoomButton}>
@@ -212,16 +210,16 @@ export default function CameraModal({ navigation, modalVisible, setVisible }) {
             </TouchableOpacity>
           </View>
           <TouchableOpacity onPress={switchCameraType}>
-            {camType === 'front' ? ( <IconPhosphor.ArrowsClockwise size={60} color="#fff" /> ) : ( <IconPhosphor.ArrowsCounterClockwise size={60} color={"#fff"} /> )}
+            {camType === 'front' ? (<IconPhosphor.ArrowsClockwise size={60} color="#fff" />) : (<IconPhosphor.ArrowsCounterClockwise size={60} color={"#fff"} />)}
           </TouchableOpacity>
         </View>
         <View style={styles.buttonView}>
           <TouchableOpacity onPress={takePic}>
-              <IconPhosphor.Camera size={60} color="#fff" />
+            <IconPhosphor.Camera size={60} color="#fff" />
           </TouchableOpacity>
           <TouchableOpacity onPress={() => toggleFlash()}>
-            {flash === Camera.Constants.FlashMode.on ? ( <IconPhosphor.Lightning size={60} color={"#fff"} /> ) : ( <IconPhosphor.LightningSlash size={60} color={"#fff"} /> )}
-          </TouchableOpacity> 
+            {flash === Camera.Constants.FlashMode.on ? (<IconPhosphor.Lightning size={60} color={"#fff"} />) : (<IconPhosphor.LightningSlash size={60} color={"#fff"} />)}
+          </TouchableOpacity>
         </View>
       </Camera>
 
@@ -229,13 +227,7 @@ export default function CameraModal({ navigation, modalVisible, setVisible }) {
 
   }
 
-  return (
-    
-    <Modal animationType="slide" visible={modalVisible} onRequestClose={() => setVisible(false)}>
-      { Platform.OS === 'ios' ? (<View style={styles.container}><CamBody/></View>) : (<SafeAreaView style={styles.container}><CamBody/></SafeAreaView>) }
-    </Modal>
-    
-  );
+  return Platform.OS === 'ios' ? (<View style={styles.container}><CamBody /></View>) : (<SafeAreaView style={styles.container}><CamBody /></SafeAreaView>)
 }
 
 const styles = StyleSheet.create({
