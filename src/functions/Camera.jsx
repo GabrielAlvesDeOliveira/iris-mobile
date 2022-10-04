@@ -8,6 +8,7 @@ import getImageInfo from "../utils/getImageInfos";
 import api_client from "../config/api_client";
 
 import * as IconPhosphor from "phosphor-react-native";
+import Preview from "../components/Layout/Preview";
 
 export default function CameraModal({ navigation, modalVisible, setVisible }) {
 
@@ -93,13 +94,17 @@ export default function CameraModal({ navigation, modalVisible, setVisible }) {
 
     return (
       <SafeAreaView style={styles.container}>
-        <Image source={{ uri: photo.uri }} style={styles.preview} />
+        {/* <Image source={{ uri: photo.uri }} style={styles.preview} />
         <Button title="Reconhecer objetos" onPress={savePhoto} />
-        <Button title="Tirar foto novamente" onPress={() => setPhoto(undefined)} />
+        <Button title="Tirar foto novamente" onPress={() => setPhoto(undefined)} /> */}
+        <Preview
+          photo={photo}
+          onNextButtonPress={savePhoto}
+          onCancelButtonPress={() => setPhoto(undefined)}
+        />
       </SafeAreaView>
     );
   }
-
 
   const switchCameraType = () => {
 
