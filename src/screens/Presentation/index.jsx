@@ -15,7 +15,7 @@ const Presentation = ({
   navigation,
 }) => {
   const { name } = route.params;
-  const { title, description } = presentationsContent[name];
+  const { title, description, screenName } = presentationsContent[name];
 
   const [image, setImage] = useState(null);
 
@@ -47,7 +47,7 @@ const Presentation = ({
       }
     }).then(({ data }) => {
       if (data.success) {
-        navigation.navigate('LabelsResults', {
+        navigation.navigate(screenName, {
           image: result.uri,
           imageName: data.image.name
         })
@@ -86,7 +86,9 @@ const Presentation = ({
             color={'secondary'}
             style={'flex-grow: 1; max-width: 100%;'}
             onPress={() => {
-              navigation.navigate("Camera")
+              navigation.navigate("Camera", {
+                screenName
+              })
             }}
           >
             <GroupContentButton>

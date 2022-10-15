@@ -10,8 +10,8 @@ import api_client from "../config/api_client";
 import * as IconPhosphor from "phosphor-react-native";
 import Preview from "../components/Layout/Preview";
 
-export default function CameraModal({ navigation, modalVisible, setVisible }) {
-
+export default function CameraModal({ navigation, route, modalVisible, setVisible }) {
+  const { screenName } = route.params;
   let camRef = useRef();
 
   const [hasCameraPermission, setHasCameraPermission] = useState();
@@ -82,7 +82,7 @@ export default function CameraModal({ navigation, modalVisible, setVisible }) {
         }
       }).then(({ data }) => {
         if (data.success) {
-          navigation.navigate('LabelsResults', {
+          navigation.navigate(screenName, {
             image: photo.uri,
             imageName: data.image.name
           })
@@ -94,9 +94,6 @@ export default function CameraModal({ navigation, modalVisible, setVisible }) {
 
     return (
       <SafeAreaView style={styles.container}>
-        {/* <Image source={{ uri: photo.uri }} style={styles.preview} />
-        <Button title="Reconhecer objetos" onPress={savePhoto} />
-        <Button title="Tirar foto novamente" onPress={() => setPhoto(undefined)} /> */}
         <Preview
           photo={photo}
           onNextButtonPress={savePhoto}

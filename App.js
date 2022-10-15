@@ -13,6 +13,10 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import RecognitionScreen from './src/components/Screens/Home/RecognitionScreen';
 import { useFonts, Sora_400Regular, Sora_600SemiBold, Sora_700Bold } from '@expo-google-fonts/sora';
 import Presentation from './src/screens/Presentation';
+import TextDetectionResults from './src/screens/Results/TextDetectionResult';
+import CelebrityRecognitionResult from './src/screens/Results/CelebrityRecognitionResult';
+import FaceDetectionResults from './src/screens/Results/FaceDetectionResults';
+
 
 export default function App() {
   const deviceTheme = useColorScheme();
@@ -45,6 +49,9 @@ export default function App() {
             <Stack.Screen name="Camera" component={Camera} />
             <Stack.Screen name='presentation' component={Presentation} />
             <Stack.Screen name='LabelsResults' component={LabelsResults} />
+            <Stack.Screen name='CelebrityResults' component={CelebrityRecognitionResult} />
+            <Stack.Screen name='FaceResults' component={FaceDetectionResults} />
+            <Stack.Screen name='TextResults' component={TextDetectionResults} />
           </Stack.Navigator>
         </NavigationContainer>
       </ThemeProvider>
