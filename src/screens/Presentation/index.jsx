@@ -15,7 +15,7 @@ const Presentation = ({
   navigation,
 }) => {
   const { name } = route.params;
-  const { title, description, screenName } = presentationsContent[name];
+  const { title, description, screenName, Icon } = presentationsContent[name];
 
   const [image, setImage] = useState(null);
 
@@ -68,7 +68,7 @@ const Presentation = ({
           <IconWrapper
             name={name}
           >
-
+            { Icon }
           </IconWrapper>
           <TitleHeading>{title}</TitleHeading>
           <Description>{description}</Description>
