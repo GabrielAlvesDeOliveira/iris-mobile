@@ -10,12 +10,13 @@ export const TextScreen = styled.View`
 
 export const TextContainer = styled.View`
   align-self: center;
-  top: 50px;
   border-radius: 25px;
-  box-shadow: 0px 4px 12px rgba(8, 2, 24, 0.15);
+  border-color: rgba(8, 2, 24, 0.15);
+  border-width: 1px;
+  padding-bottom: 10px;
+  box-shadow: 4px 12px rgba(8, 2, 24, 0.15);
   width: 80%;
   background-color: ${({ theme }) => theme.colors.background.main};
-  height: 40%;
 `;
 
 export const TextContainerFilled = styled.Text`
@@ -44,23 +45,68 @@ export const TextPhrasesLabel = styled.Text`
 `;
 
 export const TextPhrasesContainer = styled.View`
-  height:50%;
   width:80%;
   box-shadow: 0px 4px 12px rgba(8, 2, 24, 0.15);
   border-radius: 20px;
-  align-selft:center;
+  align-self:center;
 `
 
 export const TextPhrasesContainerImage = styled.Image`
-  height: 10%;
   width: 30%;
   border-radius: 20px;
 `
+export const TextImage = styled.Image`
+  width: ${({ size }) => size}px;
+  height: ${({ size }) => size + 70}px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+`;
 
 export const TextPhrasesContainerFilled = styled.Text`
-  width: 60%
+  width: 60%;
   margin-top: 5px;
   font-size: ${({ theme }) => theme.text.h5};
   font-family: ${({ theme }) => theme.font.regular};
   color: ${({ theme }) => theme.colors.typography.main};
+`
+
+export const CardText = styled.View`
+  padding: 14px;
+  box-shadow: 0px 4px 12px rgba(8, 2, 24, 0.15);
+  margin: 24px 0px 24px 0px;
+  border-color: rgba(8, 2, 24, 0.15);
+  border-width: 1px;
+  border-radius: 16px;
+`
+
+export const TextCard = styled.Text`
+  font-family: ${({ theme }) => theme.font.regular};
+  font-size: ${({ theme }) => theme.text.h5};
+  line-height: 25px;
+  color: ${({ theme }) => theme.colors.typography.main};
+  width: 200px;
+`
+
+export const PorcentageText = styled.Text`
+  font-family: ${({ theme }) => theme.font.semibold};
+  font-size: ${({ theme }) => theme.text.h6};
+  line-height: 20px;
+  color: ${({ theme }) => theme.colors.subtext.main};
+`
+
+export const TextView = styled.View`
+  justify-content: center;
+`
+
+export const MainImage = styled.Image`
+  margin-bottom: 14px;
+`
+
+export const IconImage = styled.Image`
+
+`
+
+export const BottomBarText = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
 `

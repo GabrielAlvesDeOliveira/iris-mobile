@@ -1,40 +1,77 @@
-import { Image } from "react-native";
+import { useState, useEffect } from "react";
+import { Image, Dimensions, ScrollView, Text, TouchableOpacity, Alert } from "react-native";
 import Header from "../../../components/Shared/Header/Header";
-import { TextContainer, TextContainerButton, TextContainerFilled, TextPhrasesContainer, TextPhrasesContainerFilled, TextPhrasesContainerImage, TextPhrasesLabel, TextScreen } from "./styled";
+import { TextContainer, TextContainerButton, TextContainerFilled, TextPhrasesContainer, TextPhrasesLabel, TextScreen, TextImage } from "./styled";
 import * as Clipboard from 'expo-clipboard';
-import { useState } from "react";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import LoadingScreen from "../../../components/Layout/Loading";
+import Toast from 'react-native-root-toast';  
 
 import CopyIcon from "../../../../assets/images/copy.png"
+import api_client from "../../../config/api_client";
 
-const TextDetectionResults = ({navigation, route:{params}}) => {
+import Card from './Card'
 
-  const [copiedText, setCopiedText] = useState('');
+const TextDetectionResults = ({ navigation, route: { params } }) => {
 
-  const copyToClipboard = async () => {
-    const text = await Clipboard.setStringAsync('texto que vai vir da deteccao')
-    setCopiedText(text)
+  const windowWidth = Dimensions.get("window").width;
+  const [copiedText, setCopiedText] = useState(false);
+  const { image, imageName } = params;
+  const [results, setResults] = useState(null);
+  const [text, setText] = useState(null)
+
+  useEffect(() => {
+    api_client.post('/detect-text', { imageName }).then(res => {
+
+      if (res.data.text.length === 0) {
+        Alert.alert('Não foi possível detectar texto na imagem', 'Escolha uma imagem com texto')
+        navigation.goBack()
+      }
+      
+      let arrayText = []
+      for (let obj in res.data.text) {
+        arrayText.push(res.data.text[obj].DetectedText)
+      } 
+
+      setText(arrayText.join(' '))
+      setResults(res.data)
+    }).catch(err => console.error(err))
+  }, [])
+
+  const copyToClipboard = () => {
+    Clipboard.setStringAsync(text).then(res => {
+      Toast.show('Mensagem Copiada!', { duration: Toast.durations.SHORT, backgroundColor: 'gray' })
+      setCopiedText(true)
+      setTimeout(() => {setCopiedText(false)}, 3000)
+    })
   }
 
   return (
     <TextScreen>
-      <Header navigation={navigation}/>
-      <TextContainer>
-        <TextContainerFilled>
-         Que delícia! Comida gostosa, Ai que coisa louca, Que só de pensar, Me dá água na boca! Batata assada, Com manteiga e sal Derrete na boca - Prazer sem igual! Domingo cai bem Domingo cai bem Domingo cai bem Lá vai feijoada. Que delícia! Comida gostosa, Ai que coisa louca, Que só de pensar Me dá água na boca! Batata assada, Com manteiga e Derreta na boca - Prazer sem igual! Domingo cai bem A macarronada, No sábado - 1 hum! Lá vai feijoada.
-        </TextContainerFilled>
-        <TouchableOpacity onPress={copyToClipboard} style={!copiedText ? {backgroundColor: '#A17EFF', padding: 2, width:250,height: 50, justifyContent:"center", alignItems: "center", alignSelf: "center", borderRadius: 20, flexDirection: "row"} : {backgroundColor: '#6C55A8', padding: 2, width:250,height: 50, justifyContent:"center", alignItems: "center", alignSelf: "center", borderRadius: 20, flexDirection: "row"}}>
-          <Image source={CopyIcon} style={{width: 22, height:22}}/>
-          <TextContainerButton>
-            {!copiedText ? 'Copiar Texto' : 'Copiado'}
-          </TextContainerButton>
-        </TouchableOpacity>
-      </TextContainer>
-      <TextPhrasesLabel>Trechos</TextPhrasesLabel>
-      <TextPhrasesContainer>
-        <TextPhrasesContainerImage source={CopyIcon}/> 
-        <TextPhrasesContainerFilled>Delícia!</TextPhrasesContainerFilled>
-      </TextPhrasesContainer>      
+
+      {results ? (
+        <>
+          <Header navigation={navigation} />
+          <ScrollView style={{flex: 1}}>
+          <TextImage source={{ uri: image }} size={windowWidth}/>
+          <TextContainer>
+            <TextContainerFilled>{text}</TextContainerFilled>
+            <TouchableOpacity onPress={copyToClipboard} style={!copiedText ? { backgroundColor: '#A17EFF', padding: 2, width: 250, height: 50, justifyContent: "center", alignItems: "center", alignSelf: "center", borderRadius: 20, flexDirection: "row" } : { backgroundColor: '#6C55A8', padding: 2, width: 250, height: 50, justifyContent: "center", alignItems: "center", alignSelf: "center", borderRadius: 20, flexDirection: "row" }}>
+              <Image source={CopyIcon} style={{ width: 22, height: 22 }} />
+              <TextContainerButton>
+                {!copiedText ? 'Copiar Texto' : 'Copiado'}
+              </TextContainerButton>
+            </TouchableOpacity>
+          </TextContainer>
+          <TextPhrasesLabel>Trechos</TextPhrasesLabel>
+          <TextPhrasesContainer>
+
+          {results.text.map(item => <Card image={image} item={item}/>)}
+
+          </TextPhrasesContainer>
+          </ScrollView>
+        </>
+      ) : (<LoadingScreen />)
+      }
     </TextScreen>
   )
 }
