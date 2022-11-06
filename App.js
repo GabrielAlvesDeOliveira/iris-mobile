@@ -16,7 +16,7 @@ import Presentation from './src/screens/Presentation';
 import TextDetectionResults from './src/screens/Results/TextDetectionResult';
 import CelebrityRecognitionResult from './src/screens/Results/CelebrityRecognitionResult';
 import FaceDetectionResults from './src/screens/Results/FaceDetectionResults';
-
+import { RootSiblingParent } from 'react-native-root-siblings';
 
 export default function App() {
   const deviceTheme = useColorScheme();
@@ -38,22 +38,24 @@ export default function App() {
   return (
     <ThemeContext.Provider value={currentTheme}>
       <ThemeProvider theme={currentTheme}>
-        <NavigationContainer>
-          <StatusBar hidden />
-          <Stack.Navigator screenOptions={{
-            headerShown: false
-          }} initialRouteName='Start'>
-            <Stack.Screen name="Start" component={StartScreen} />
-            <Stack.Screen name="Options" component={NavBar} />
-            <Stack.Screen name="Recognition" component={RecognitionScreen} />
-            <Stack.Screen name="Camera" component={Camera} />
-            <Stack.Screen name='presentation' component={Presentation} />
-            <Stack.Screen name='LabelsResults' component={LabelsResults} />
-            <Stack.Screen name='CelebrityResults' component={CelebrityRecognitionResult} />
-            <Stack.Screen name='FaceResults' component={FaceDetectionResults} />
-            <Stack.Screen name='TextResults' component={TextDetectionResults} />
-          </Stack.Navigator>
-        </NavigationContainer>
+        <RootSiblingParent>
+          <NavigationContainer>
+            <StatusBar hidden />
+            <Stack.Navigator screenOptions={{
+              headerShown: false
+            }} initialRouteName='Start'>
+              <Stack.Screen name="Start" component={StartScreen} />
+              <Stack.Screen name="Options" component={NavBar} />
+              <Stack.Screen name="Recognition" component={RecognitionScreen} />
+              <Stack.Screen name="Camera" component={Camera} />
+              <Stack.Screen name='presentation' component={Presentation} />
+              <Stack.Screen name='LabelsResults' component={LabelsResults} />
+              <Stack.Screen name='CelebrityResults' component={CelebrityRecognitionResult} />
+              <Stack.Screen name='FaceResults' component={FaceDetectionResults} />
+              <Stack.Screen name='TextResults' component={TextDetectionResults} />
+            </Stack.Navigator>
+          </NavigationContainer>
+        </RootSiblingParent>
       </ThemeProvider>
     </ThemeContext.Provider>
   );
