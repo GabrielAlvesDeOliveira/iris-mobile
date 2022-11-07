@@ -14,7 +14,6 @@ const Card = ({ item, image }) => {
 
   return (
     <CardText>
-      <MainImage source={{ uri: image }} style={{ width: '100%', height: 128, borderRadius: 16 }} />
       <BottomBarText>
         <TextView>
           <TextCard>{item.DetectedText}</TextCard>
