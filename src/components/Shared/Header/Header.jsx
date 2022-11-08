@@ -2,7 +2,9 @@ import Logo from '../../Logo/Logo'
 import { List } from "phosphor-react-native";
 import { ArrowLeft } from 'phosphor-react-native';
 import { HeaderWrapper, HeaderButton } from "./styles";
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity, Modal, Text } from "react-native";
+import { useState } from 'react';
+import SideBar from './../../SideBar/index';
 
 const Header = ({
     navigation,
@@ -10,6 +12,9 @@ const Header = ({
     isTransparent = false,
     previousScreen = 'Home',
 }) => {
+
+    const [ isVisible, setIsVisible ] = useState(false);
+
     return (
         <HeaderWrapper>
             {
@@ -33,7 +38,7 @@ const Header = ({
             }
 
             <HeaderButton
-                onPress={() => { }}
+                onPress={() => { setIsVisible(!isVisible) }}
             >
                 <List
                     size={36}
@@ -41,6 +46,9 @@ const Header = ({
                     color="#000000"
                 />
             </HeaderButton>
+            <Modal visible={isVisible} >
+                <SideBar setVisible={setIsVisible} visible={isVisible} navigation={navigation}/>
+            </Modal>
         </HeaderWrapper>
     );
 }

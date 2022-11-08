@@ -17,6 +17,7 @@ import TextDetectionResults from './src/screens/Results/TextDetectionResult';
 import CelebrityRecognitionResult from './src/screens/Results/CelebrityRecognitionResult';
 import FaceDetectionResults from './src/screens/Results/FaceDetectionResults';
 import { RootSiblingParent } from 'react-native-root-siblings';
+import HowItsWorks from './src/components/Screens/HowItWorks';
 
 export default function App() {
   const deviceTheme = useColorScheme();
@@ -53,6 +54,7 @@ export default function App() {
               <Stack.Screen name='CelebrityResults' component={CelebrityRecognitionResult} />
               <Stack.Screen name='FaceResults' component={FaceDetectionResults} />
               <Stack.Screen name='TextResults' component={TextDetectionResults} />
+              <Stack.Screen name='HowItWorks' component={HowItsWorks} />
             </Stack.Navigator>
           </NavigationContainer>
         </RootSiblingParent>
