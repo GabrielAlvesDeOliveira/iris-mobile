@@ -27,7 +27,7 @@ import { useContext, useState } from "react";
 
 import { ThemeContext } from "styled-components/native";
 
-export default function SideBar({ setVisible, visible }) {
+export default function SideBar({ setVisible, visible, navigation }) {
   const theme = useContext(ThemeContext);
   const [isEnabled, setIsEnabled] = useState(false);
 
@@ -71,7 +71,7 @@ export default function SideBar({ setVisible, visible }) {
             <CaretRightIcon />
           </SideBarButton>
         </TouchableOpacity>
-        <TouchableOpacity style={{ marginTop: 30 }}>
+        <TouchableOpacity style={{ marginTop: 30 }} onPress={() => navigation.navigate('HowItWorks')}>
           <SideBarButton>
             <View
               style={{
@@ -132,7 +132,9 @@ export default function SideBar({ setVisible, visible }) {
   function ResourcesButtons() {
     return (
       <>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => {
+          navigation.navigate('presentation', {name: 'object'})}
+          }>
           <SideBarButton>
             <View
               style={{
@@ -155,7 +157,9 @@ export default function SideBar({ setVisible, visible }) {
             <CaretRightIcon />
           </SideBarButton>
         </TouchableOpacity>
-        <TouchableOpacity style={{ marginTop: 30 }}>
+        <TouchableOpacity style={{ marginTop: 30 }} onPress={() => {
+            navigation.navigate('presentation', {name: 'text'})
+          }}>
           <SideBarButton>
             <View
               style={{
@@ -172,13 +176,15 @@ export default function SideBar({ setVisible, visible }) {
                 Texto
               </SideBarButtonContentFunctionText>
               <SideBarButtonContentDescriptionText>
-                Detecte os textos presntes na imagem
+                Detecte os textos presentes na imagem
               </SideBarButtonContentDescriptionText>
             </SideBarButtonContent>
             <CaretRightIcon />
           </SideBarButton>
         </TouchableOpacity>
-        <TouchableOpacity style={{ marginTop: 30 }}>
+        <TouchableOpacity style={{ marginTop: 30 }} onPress={() => {
+          navigation.navigate('presentation', {name: 'face'})
+      }}>
           <SideBarButton>
             <View
               style={{
@@ -201,7 +207,9 @@ export default function SideBar({ setVisible, visible }) {
             <CaretRightIcon />
           </SideBarButton>
         </TouchableOpacity>
-        <TouchableOpacity style={{ marginTop: 30 }}>
+        <TouchableOpacity style={{ marginTop: 30 }} onPress={() => {
+            navigation.navigate('presentation', {name: 'celebrity'})
+          }}>
           <SideBarButton>
             <View
               style={{

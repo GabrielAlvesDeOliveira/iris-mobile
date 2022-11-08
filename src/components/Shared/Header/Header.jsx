@@ -47,7 +47,7 @@ const Header = ({
                 />
             </HeaderButton>
             <Modal visible={isVisible} >
-                <SideBar setVisible={setIsVisible} visible={isVisible}/>
+                <SideBar setVisible={setIsVisible} visible={isVisible} navigation={navigation}/>
             </Modal>
         </HeaderWrapper>
     );
